@@ -7,6 +7,10 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    ignore:
+      # v2 is for Changesets v3 (renamed inputs); release.yml uses Changesets v2
+      - dependency-name: changesets/action
+        update-types: [version-update:semver-major]
     groups:
       actions:
         patterns: ['*']

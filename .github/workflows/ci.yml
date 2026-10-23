@@ -30,6 +30,9 @@ jobs:
       - run: corepack enable
       - name: Dependencies (immutable lockfile)
         run: yarn install --immutable
+      # Two copies of a package (e.g. @codemirror/view after a partial update) break the editor
+      - name: No duplicated dependencies
+        run: yarn dedupe --check
       - name: Lint
         run: yarn workspaces foreach -A --include '@edtroleis/*' run lint --max-warnings 0
       - name: Types
