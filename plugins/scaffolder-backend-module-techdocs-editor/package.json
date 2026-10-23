@@ -1,0 +1,57 @@
+{
+  "name": "@edtroleis/plugin-scaffolder-backend-module-techdocs-editor",
+  "version": "0.1.0",
+  "description": "Scaffolder action techdocs-editor:setup: prepares a documentation repository for the TechDocs editor (checks, lint, squash merge, ruleset)",
+  "license": "Apache-2.0",
+  "author": "Edtroleis",
+  "keywords": [
+    "backstage",
+    "scaffolder",
+    "techdocs",
+    "github"
+  ],
+  "homepage": "https://github.com/edtroleis/backstage-plugin-techdocs-editor/tree/main/plugins/scaffolder-backend-module-techdocs-editor#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edtroleis/backstage-plugin-techdocs-editor.git",
+    "directory": "plugins/scaffolder-backend-module-techdocs-editor"
+  },
+  "bugs": {
+    "url": "https://github.com/edtroleis/backstage-plugin-techdocs-editor/issues"
+  },
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "publishConfig": {
+    "access": "public",
+    "main": "dist/index.cjs.js",
+    "types": "dist/index.d.ts"
+  },
+  "backstage": {
+    "role": "backend-plugin-module",
+    "pluginId": "scaffolder",
+    "pluginPackage": "@backstage/plugin-scaffolder-backend"
+  },
+  "scripts": {
+    "build": "backstage-cli package build",
+    "lint": "backstage-cli package lint",
+    "test": "backstage-cli package test",
+    "clean": "backstage-cli package clean",
+    "prepack": "backstage-cli package prepack",
+    "postpack": "backstage-cli package postpack"
+  },
+  "dependencies": {
+    "@backstage/backend-plugin-api": "^1.11.0",
+    "@backstage/errors": "^1.3.2",
+    "@backstage/integration": "^2.1.3",
+    "@backstage/plugin-scaffolder-backend-module-github": "^0.10.1",
+    "@backstage/plugin-scaffolder-node": "^0.13.8",
+    "@edtroleis/plugin-techdocs-editor-common": "workspace:^"
+  },
+  "devDependencies": {
+    "@backstage/cli": "^0.36.7",
+    "@backstage/config": "^1.3.10"
+  },
+  "files": [
+    "dist"
+  ]
+}

@@ -1,0 +1,23 @@
+site_name: Wiki de Demonstração
+repo_url: https://github.com/edtroleis/docs-editor-wiki-demo
+edit_uri: edit/main/docs/
+
+# Sem "nav": o menu é montado a partir das pastas de docs/.
+# Criar uma página é só criar um arquivo .md.
+
+plugins:
+  - techdocs-core
+  # "Criado em" e "Última atualização" no rodapé de cada página, a partir do histórico do Git
+  - git-revision-date-localized:
+      type: custom
+      custom_format: "%d/%m/%Y %H:%M:%S"   # 22/10/2026 12:35:27
+      locale: pt
+      # Sem isto as datas saem em UTC: um commit às 23h em Brasília aparecia como o dia seguinte
+      timezone: America/Sao_Paulo
+      enable_creation_date: true
+      fallback_to_build_date: true
+
+# Interface do tema em português (ex.: "Criado em", "Última atualização")
+theme:
+  name: material
+  language: pt-BR

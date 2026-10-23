@@ -1,0 +1,21 @@
+/*
+ * Tema do editor (Milkdown Crepe). Importado por este arquivo, e não direto no .tsx, porque o
+ * pacote do Crepe declara "sideEffects": false e o bundler descarta imports de CSS feitos a partir
+ * de pacotes assim.
+ */
+@import '@milkdown/crepe/theme/common/style.css';
+@import '@milkdown/crepe/theme/frame.css';
+
+/* Mesma fonte do portal nos títulos e no texto (o tema usa Noto Serif/Sans, que não são carregadas) */
+.milkdown {
+  --crepe-font-title: inherit;
+  --crepe-font-default: inherit;
+}
+
+/* Busca no modo visual */
+.milkdown .docs-search-match {
+  background: rgba(255, 213, 79, 0.45);
+}
+.milkdown .docs-search-current {
+  background: rgba(255, 152, 0, 0.85);
+}

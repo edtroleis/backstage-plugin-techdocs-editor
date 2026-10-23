@@ -1,0 +1,116 @@
+{
+  "name": "@edtroleis/plugin-techdocs-editor",
+  "version": "0.1.0",
+  "description": "Visual editor for TechDocs pages: drafts, checks and publishing through GitHub pull requests",
+  "license": "Apache-2.0",
+  "author": "Edtroleis",
+  "keywords": [
+    "backstage",
+    "backstage-plugin",
+    "techdocs",
+    "wysiwyg",
+    "markdown",
+    "editor",
+    "github"
+  ],
+  "homepage": "https://github.com/edtroleis/backstage-plugin-techdocs-editor/tree/main/plugins/techdocs-editor#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edtroleis/backstage-plugin-techdocs-editor.git",
+    "directory": "plugins/techdocs-editor"
+  },
+  "bugs": {
+    "url": "https://github.com/edtroleis/backstage-plugin-techdocs-editor/issues"
+  },
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "publishConfig": {
+    "access": "public",
+    "main": "dist/index.esm.js",
+    "types": "dist/index.d.ts"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./alpha": "./src/alpha.tsx",
+    "./package.json": "./package.json"
+  },
+  "typesVersions": {
+    "*": {
+      "alpha": [
+        "src/alpha.tsx"
+      ],
+      "package.json": [
+        "package.json"
+      ]
+    }
+  },
+  "backstage": {
+    "role": "frontend-plugin",
+    "pluginId": "techdocs-editor",
+    "pluginPackages": [
+      "@edtroleis/plugin-techdocs-editor",
+      "@edtroleis/plugin-techdocs-editor-common"
+    ]
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "scripts": {
+    "start": "backstage-cli package start",
+    "build": "backstage-cli package build",
+    "lint": "backstage-cli package lint",
+    "test": "backstage-cli package test",
+    "clean": "backstage-cli package clean",
+    "prepack": "backstage-cli package prepack",
+    "postpack": "backstage-cli package postpack"
+  },
+  "dependencies": {
+    "@backstage/catalog-client": "^1.16.3",
+    "@backstage/catalog-model": "^1.10.2",
+    "@backstage/core-compat-api": "^0.5.16",
+    "@backstage/core-components": "^0.18.15",
+    "@backstage/core-plugin-api": "^1.12.11",
+    "@backstage/frontend-plugin-api": "^0.18.2",
+    "@backstage/integration-react": "^1.2.23",
+    "@backstage/plugin-catalog-react": "^3.3.0",
+    "@backstage/plugin-permission-react": "^0.5.6",
+    "@backstage/plugin-techdocs-react": "^1.4.0",
+    "@backstage/ui": "^0.19.0",
+    "@codemirror/commands": "^6.11.1",
+    "@codemirror/lang-markdown": "^6.5.2",
+    "@codemirror/language": "^6.13.1",
+    "@codemirror/language-data": "^6.5.2",
+    "@codemirror/lint": "^6.9.7",
+    "@codemirror/search": "^6.7.2",
+    "@codemirror/state": "^6.7.6",
+    "@codemirror/view": "^6.43.14",
+    "@edtroleis/plugin-techdocs-editor-common": "workspace:^",
+    "@lezer/highlight": "^1.2.5",
+    "@material-ui/core": "^4.12.2",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "4.0.0-alpha.61",
+    "@milkdown/crepe": "7.22.3",
+    "@milkdown/kit": "7.22.3"
+  },
+  "peerDependencies": {
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0",
+    "react-router-dom": "^6.0.0"
+  },
+  "devDependencies": {
+    "@backstage/cli": "^0.36.7",
+    "@backstage/test-utils": "^1.7.23",
+    "@playwright/test": "^1.32.3",
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/react": "^16.3.3",
+    "esbuild": "0.28.2",
+    "react": "^18.0.2",
+    "react-dom": "^18.0.2",
+    "react-router-dom": "^6.30.2"
+  },
+  "files": [
+    "dist",
+    "config.d.ts"
+  ],
+  "configSchema": "config.d.ts"
+}

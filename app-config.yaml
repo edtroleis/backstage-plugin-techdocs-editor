@@ -1,0 +1,83 @@
+# Development app for the TechDocs editor plugin (`yarn start`). The portal tests
+# (`yarn test:editor:portal`) run against it with a simulated GitHub, so no token is needed for them.
+app:
+  title: TechDocs editor (dev)
+  baseUrl: http://localhost:3000
+  packages: all
+  extensions:
+    # The tests use the pt-BR texts; switch to `en` to see the default language
+    - api:app/app-language:
+        config:
+          defaultLanguage: pt-BR
+          availableLanguages: [en, pt-BR]
+    - page:catalog:
+        config:
+          path: /
+
+organization:
+  name: TechDocs editor
+
+backend:
+  baseUrl: http://localhost:7007
+  listen:
+    port: 7007
+  csp:
+    connect-src: ["'self'", 'http:', 'https:']
+  cors:
+    origin: http://localhost:3000
+    methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
+    credentials: true
+  database:
+    client: better-sqlite3
+    connection: ':memory:'
+
+integrations:
+  github:
+    - host: github.com
+      token: ${GITHUB_TOKEN}
+
+# Sign in as guest, owner of the example wiki. To edit a real repository, add a GitHub OAuth App:
+# auth.providers.github.development.{clientId,clientSecret} (see plugins/techdocs-editor/README.md)
+auth:
+  environment: development
+  providers:
+    guest:
+      userEntityRef: user:default/guest
+      ownershipEntityRefs: [user:default/guest, group:default/guests]
+
+# Builds the example wiki on first view; needs `mkdocs` with the techdocs-core plugin on the PATH
+# (`pip install -r requirements-docs.txt`)
+techdocs:
+  builder: local
+  generator:
+    runIn: local
+    mkdocs:
+      # Page dates shown by the editor's TechDocs addon. Backstage drops MkDocs plugins outside its
+      # allowlist when it builds the docs itself (not when the pipeline builds them)
+      dangerouslyAllowAdditionalPlugins: [git-revision-date-localized]
+  publisher:
+    type: local
+
+catalog:
+  rules:
+    - allow: [Component, Location, User, Group]
+  locations:
+    - type: file
+      target: ../../examples/org.yaml
+    # Copy of plugins/techdocs-editor/e2e/portal/wiki-fixture made by scripts/prepare-dev-wiki.mjs
+    # (yarn start)
+    - type: file
+      target: ../../node_modules/.cache/dev-wiki/catalog-info.yaml
+
+permission:
+  enabled: true
+
+# Plugin options: plugins/techdocs-editor/config.d.ts. Plain-language messages for the example wiki's
+# pipeline jobs (the portal tests check them)
+techdocsEditor:
+  verification:
+    checkHelp:
+      'Formatação do texto': Há trechos com formatação fora do padrão.
+      Links: Há links que não funcionam.
+      'Dados sensíveis': Parece que há uma senha, token ou chave no texto. Remova antes de publicar.
+      'Montagem da documentação': A documentação não pôde ser montada. Normalmente é um link para uma página que não existe.

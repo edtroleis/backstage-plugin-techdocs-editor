@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: wiki-demo
+  title: Wiki de Demonstração
+  description: Wiki usada para demonstrar a edição visual de docs com PR e pipeline
+  annotations:
+    github.com/project-slug: edtroleis/docs-editor-wiki-demo
+    backstage.io/techdocs-ref: dir:.
+spec:
+  type: documentation
+  lifecycle: experimental
+  owner: group:default/guests

@@ -1,0 +1,5 @@
+# Regras ajustadas para quem está aprendendo Markdown
+default: true
+MD013: false   # tamanho de linha
+MD033: false   # HTML inline
+MD046: false   # estilo de bloco de código (admonitions usam indentação)

@@ -1,0 +1,5 @@
+dist
+dist-types
+coverage
+.vscode
+plugins/techdocs-editor-common/src/vendor/

@@ -1,0 +1,15 @@
+# Weekly updates by pull request (CI runs on each one); actions stay pinned by SHA
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      backstage:
+        patterns: ['@backstage/*']

@@ -1,0 +1,138 @@
+# Lint, types, tests and security checks. Actions pinned by commit SHA (tag in the comment);
+# Renovate/Dependabot update them by pull request.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: '0 6 * * 1' # weekly audit: new CVEs show up without code changes
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Lint, types and tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version-file: .nvmrc
+      - run: corepack enable
+      - name: Dependencies (immutable lockfile)
+        run: yarn install --immutable
+      - name: Lint
+        run: yarn workspaces foreach -A --include '@edtroleis/*' run lint --max-warnings 0
+      - name: Types
+        run: yarn tsc
+      - name: Unused code and dependencies (knip)
+        run: yarn knip:editor
+      - name: Bundled markdownlint matches the installed version
+        run: yarn workspace @edtroleis/plugin-techdocs-editor-common bundle:markdownlint --check
+      - name: Playwright browser
+        run: yarn playwright install --with-deps chromium
+      - name: Tests (unit and in the browser)
+        run: yarn test:editor
+        env:
+          CI: 'true'
+      - name: Report of the failed tests
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: editor-test-report
+          path: node_modules/.cache/editor-test-report
+          retention-days: 7
+
+  portal:
+    name: Tests in the portal
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version-file: .nvmrc
+      # TechDocs builds the example wiki with MkDocs (local builder of the development app)
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements-docs.txt
+      - run: corepack enable
+      - name: Dependencies (immutable lockfile)
+        run: yarn install --immutable
+      - name: Playwright browser
+        run: yarn playwright install --with-deps chromium
+      # Starts the development app (yarn start) and runs the editor against a simulated GitHub
+      - name: Tests in the portal
+        run: yarn test:editor:portal
+        env:
+          CI: 'true'
+      - name: Report of the failed tests
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: editor-portal-report
+          path: node_modules/.cache/editor-portal-report
+          retention-days: 7
+
+  dependencies:
+    name: Dependency audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version-file: .nvmrc
+      - run: corepack enable
+      # Fails on high/critical in the production dependencies of the published packages
+      # (exceptions without a fix are in .yarnrc.yml, with the reason); the development app's
+      # dependencies show in the full report without blocking
+      - name: High and critical (published packages, production)
+        run: yarn workspaces foreach -A --include '@edtroleis/*' npm audit --recursive --environment production --severity high
+      - name: Full report
+        if: always()
+        run: yarn npm audit --all --recursive || true
+
+  secrets:
+    name: Secrets
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          fetch-depth: 0 # the whole history: a deleted secret is still in Git
+      - uses: gitleaks/gitleaks-action@ff98106e4c7b2bc287b24eaf42907196329070c7 # v2.3.9
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  codeql:
+    name: CodeQL
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370 # v4.39.1
+        with:
+          languages: javascript-typescript
+          queries: security-extended
+          config: |
+            paths:
+              - plugins
+            paths-ignore:
+              - '**/node_modules'
+              - '**/dist'
+              - plugins/techdocs-editor-common/src/vendor
+      - uses: github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370 # v4.39.1

@@ -1,0 +1,63 @@
+{
+  "name": "@edtroleis/plugin-techdocs-editor-common",
+  "version": "0.1.0",
+  "description": "Core of the TechDocs visual editor: MkDocs Markdown, lint, three-way merge and GitHub client",
+  "license": "Apache-2.0",
+  "author": "Edtroleis",
+  "keywords": [
+    "backstage",
+    "techdocs",
+    "markdown",
+    "mkdocs"
+  ],
+  "homepage": "https://github.com/edtroleis/backstage-plugin-techdocs-editor/tree/main/plugins/techdocs-editor-common#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edtroleis/backstage-plugin-techdocs-editor.git",
+    "directory": "plugins/techdocs-editor-common"
+  },
+  "bugs": {
+    "url": "https://github.com/edtroleis/backstage-plugin-techdocs-editor/issues"
+  },
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "publishConfig": {
+    "access": "public",
+    "main": "dist/index.cjs.js",
+    "module": "dist/index.esm.js",
+    "types": "dist/index.d.ts"
+  },
+  "backstage": {
+    "role": "common-library",
+    "pluginId": "techdocs-editor",
+    "pluginPackages": [
+      "@edtroleis/plugin-techdocs-editor",
+      "@edtroleis/plugin-techdocs-editor-common"
+    ]
+  },
+  "sideEffects": false,
+  "scripts": {
+    "build": "backstage-cli package build",
+    "lint": "backstage-cli package lint",
+    "test": "backstage-cli package test",
+    "clean": "backstage-cli package clean",
+    "prepack": "backstage-cli package prepack",
+    "postpack": "backstage-cli package postpack",
+    "bundle:markdownlint": "node scripts/bundle-markdownlint.mjs"
+  },
+  "dependencies": {
+    "@backstage/catalog-model": "^1.10.2",
+    "@backstage/plugin-catalog-common": "^1.2.1",
+    "@backstage/plugin-permission-common": "^0.9.12",
+    "markdownlint": "0.42.0",
+    "yaml": "2.9.1"
+  },
+  "devDependencies": {
+    "@backstage/cli": "^0.36.7",
+    "esbuild": "0.28.2"
+  },
+  "files": [
+    "dist",
+    "THIRD_PARTY_NOTICES.md"
+  ]
+}

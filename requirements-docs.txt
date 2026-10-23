@@ -1,0 +1,3 @@
+# MkDocs for the development app's TechDocs (local builder) and the portal tests
+mkdocs-techdocs-core==1.7.1
+mkdocs-git-revision-date-localized-plugin==1.6.0

@@ -1,0 +1,63 @@
+# Releases with Changesets:
+# - with pending changesets on main: opens or updates the "Version Packages" pull request
+#   (versions and CHANGELOGs);
+# - after that pull request is merged: submits the new versions to npm with provenance as staged
+#   packages; a maintainer approves them on npmjs.com (Staged Packages) with 2FA. Running the
+#   workflow again (workflow_dispatch) after approving tags them and creates the GitHub releases
+#   (scripts/publish.mjs). Repository variable NPM_PUBLISH_MODE=publish skips the approval.
+# npm auth: trusted publishing (OIDC, configured per package on npmjs.com, no secret). Only the
+# very first release needs the NPM_TOKEN secret (a "Read and write (stage only)" granular token),
+# because npm configures trusted publishing on packages that already exist; delete it afterwards.
+name: Release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Version or publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write # version commit, tags and releases
+      pull-requests: write # "Version Packages" pull request
+      id-token: write # npm provenance and trusted publishing
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version-file: .nvmrc
+          registry-url: https://registry.npmjs.org
+      - run: corepack enable
+      # npm stage needs npm 11.15+, trusted publishing 11.5.1+
+      - run: npm install --global npm@11.19.1
+      - name: Dependencies (immutable lockfile)
+        run: yarn install --immutable
+      - name: Version Packages pull request
+        id: changesets
+        uses: changesets/action@a45c4d594aa4e2c509dc14a9f2b3b67ba3780d0d # v1.9.0
+        with:
+          # The lockfile records the workspace versions: update it with the new ones
+          version: yarn release:version
+          commit: 'chore: version packages'
+          title: 'chore: version packages'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish to npm
+        if: steps.changesets.outputs.hasChangesets == 'false'
+        run: yarn release
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_PUBLISH_MODE: ${{ vars.NPM_PUBLISH_MODE || 'stage' }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
