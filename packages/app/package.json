@@ -23,7 +23,7 @@
     "@backstage/ui": "^0.19.0",
     "@edtroleis/plugin-techdocs-editor": "workspace:^",
     "react": "^18.0.2",
-    "react-dom": "^18.0.2",
+    "react-dom": "^19.3.1",
     "react-router-dom": "^6.30.2"
   },
   "devDependencies": {
