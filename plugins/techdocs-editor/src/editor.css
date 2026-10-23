@@ -1,10 +1,4 @@
-/*
- * Tema do editor (Milkdown Crepe). Importado por este arquivo, e não direto no .tsx, porque o
- * pacote do Crepe declara "sideEffects": false e o bundler descarta imports de CSS feitos a partir
- * de pacotes assim.
- */
-@import '@milkdown/crepe/theme/common/style.css';
-@import '@milkdown/crepe/theme/frame.css';
+/* Ajustes do editor sobre o tema do Crepe (vendor/crepe-theme.css, importado antes no MarkdownEditor). */
 
 /* Mesma fonte do portal nos títulos e no texto (o tema usa Noto Serif/Sans, que não são carregadas) */
 .milkdown {

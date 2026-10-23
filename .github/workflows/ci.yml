@@ -36,8 +36,10 @@ jobs:
         run: yarn tsc
       - name: Unused code and dependencies (knip)
         run: yarn knip:editor
-      - name: Bundled markdownlint matches the installed version
-        run: yarn workspace @edtroleis/plugin-techdocs-editor-common bundle:markdownlint --check
+      - name: Bundled markdownlint and Crepe theme match the installed versions
+        run: |
+          yarn workspace @edtroleis/plugin-techdocs-editor-common bundle:markdownlint --check
+          yarn workspace @edtroleis/plugin-techdocs-editor bundle:crepe-theme --check
       - name: Playwright browser
         run: yarn playwright install --with-deps chromium
       - name: Tests (unit and in the browser)

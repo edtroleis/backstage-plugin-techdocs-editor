@@ -53,7 +53,8 @@
     ]
   },
   "sideEffects": [
-    "*.css"
+    "*.css",
+    "*.css.esm.js"
   ],
   "scripts": {
     "start": "backstage-cli package start",
@@ -62,7 +63,8 @@
     "test": "backstage-cli package test",
     "clean": "backstage-cli package clean",
     "prepack": "backstage-cli package prepack",
-    "postpack": "backstage-cli package postpack"
+    "postpack": "backstage-cli package postpack",
+    "bundle:crepe-theme": "node scripts/bundle-crepe-theme.mjs"
   },
   "dependencies": {
     "@backstage/catalog-client": "^1.16.3",

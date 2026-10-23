@@ -213,7 +213,8 @@ test.describe('navegação e página da doc', () => {
 
     // O TechDocs recria o conteúdo ao navegar (sem recarregar): as datas mudam junto e o rodapé
     // continua escondido
-    await page.getByRole('link', { name: 'Processo de aprovação' }).first().click();
+    // Um link visível: com a seção fechada no menu (como na wiki real), o do menu fica escondido
+    await page.getByRole('link', { name: /Processo de aprovação/ }).filter({ visible: true }).first().click();
     await expect(page).toHaveURL(/processos\/aprovacao/);
     await expect(dates).toHaveText(format, { timeout: 30_000, useInnerText: true });
     await expect.poll(footerHidden).toBe(true);

@@ -9,6 +9,8 @@ import { inlineCodeTypingPlugin } from './inlineCodeTyping';
 import { buildTopBar } from './topBar';
 import { EditorText, headingOptions, labelTopBar, selectionToolbar, slashMenu } from './labels';
 import { SearchResult, moveSearch, search, visualSearchPlugin } from './visualSearch';
+// Tema do Crepe resolvido num arquivo do pacote (scripts/bundle-crepe-theme.mjs), depois os ajustes
+import './vendor/crepe-theme.css';
 import './editor.css';
 
 // O editor se redimensiona enquanto mede o conteúdo e o navegador avisa "ResizeObserver loop…".

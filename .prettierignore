@@ -3,3 +3,4 @@ dist-types
 coverage
 .vscode
 plugins/techdocs-editor-common/src/vendor/
+plugins/techdocs-editor/src/vendor/
