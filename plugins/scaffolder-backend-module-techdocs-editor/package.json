@@ -1,6 +1,6 @@
 {
   "name": "@edtroleis/plugin-scaffolder-backend-module-techdocs-editor",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Scaffolder action techdocs-editor:setup: prepares a documentation repository for the TechDocs editor (checks, lint, squash merge, ruleset)",
   "license": "Apache-2.0",
   "author": "Edtroleis",
