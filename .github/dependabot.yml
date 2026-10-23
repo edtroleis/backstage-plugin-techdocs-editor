@@ -1,15 +1,26 @@
-# Weekly updates by pull request (CI runs on each one); actions stay pinned by SHA
+# Weekly updates by pull request (CI runs on each one); actions stay pinned by SHA.
+# npm: minor and patch only, grouped. Major versions follow the Backstage release
+# (`backstage-cli versions:bump`), e.g. React 19 only when Backstage supports it.
 version: 2
 updates:
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: weekly
+    groups:
+      actions:
+        patterns: ['*']
   - package-ecosystem: npm
     directory: /
     schedule:
       interval: weekly
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 3
+    ignore:
+      - dependency-name: '*'
+        update-types: [version-update:semver-major]
     groups:
       backstage:
         patterns: ['@backstage/*']
+      dependencies:
+        patterns: ['*']
+        exclude-patterns: ['@backstage/*']
