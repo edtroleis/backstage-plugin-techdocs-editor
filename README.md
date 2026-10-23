@@ -1,5 +1,11 @@
 # TechDocs Editor for Backstage
 
+[![CI](https://github.com/edtroleis/backstage-plugin-techdocs-editor/actions/workflows/ci.yml/badge.svg)](https://github.com/edtroleis/backstage-plugin-techdocs-editor/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/@edtroleis/plugin-techdocs-editor?label=npm)](https://www.npmjs.com/package/@edtroleis/plugin-techdocs-editor)
+[![npm provenance](https://img.shields.io/badge/npm-provenance-blue)](https://www.npmjs.com/package/@edtroleis/plugin-techdocs-editor#provenance)
+[![Backstage](https://img.shields.io/badge/Backstage-1.56-36BAA2?logo=backstage&logoColor=white)](https://backstage.io)
+[![License](https://img.shields.io/github/license/edtroleis/backstage-plugin-techdocs-editor)](https://github.com/edtroleis/backstage-plugin-techdocs-editor/blob/main/LICENSE)
+
 A visual editor for [TechDocs](https://backstage.io/docs/features/techdocs/) pages, for people who
 don't know Git: click the pencil on a page, write, publish. Underneath it is the usual GitHub flow
 (branch, pull request, checks, merge), with the person's own GitHub permissions.
@@ -11,6 +17,15 @@ don't know Git: click the pencil on a page, write, publish. Underneath it is the
 | [`@edtroleis/plugin-scaffolder-backend-module-techdocs-editor`](plugins/scaffolder-backend-module-techdocs-editor/README.md): Scaffolder action `techdocs-editor:setup` | [![npm](https://img.shields.io/npm/v/@edtroleis/plugin-scaffolder-backend-module-techdocs-editor)](https://www.npmjs.com/package/@edtroleis/plugin-scaffolder-backend-module-techdocs-editor) |
 
 Installation, configuration and security: [plugin README](plugins/techdocs-editor/README.md).
+
+## See it working
+
+| Edit and publish | Checks in plain language | Markdown view and lint |
+|:---:|:---:|:---:|
+| ![Click the pencil on a TechDocs page, write in the visual editor, save and check, send for publication](https://raw.githubusercontent.com/edtroleis/backstage-plugin-techdocs-editor/main/docs/media/edit-and-publish.gif) | ![A failed check explained in plain language; "show line" opens the Markdown at the problem](https://raw.githubusercontent.com/edtroleis/backstage-plugin-techdocs-editor/main/docs/media/checks-in-plain-language.gif) | ![Switch to the Markdown view; the lint points out problems while typing](https://raw.githubusercontent.com/edtroleis/backstage-plugin-techdocs-editor/main/docs/media/markdown-and-lint.gif) |
+| Pencil on the page, visual editor, draft pull request, checks, send | A failed check in plain language; "show line" goes to the problem | Same document as Markdown, lint while typing |
+
+The videos are recorded from the development app with a simulated GitHub (`yarn record:videos`).
 
 ## Development
 

@@ -24,7 +24,8 @@
     "prettier:check": "prettier --check .",
     "changeset": "changeset",
     "release": "node scripts/publish.mjs",
-    "release:version": "changeset version && yarn install --mode=update-lockfile"
+    "release:version": "changeset version && yarn install --mode=update-lockfile",
+    "record:videos": "node scripts/make-videos.mjs"
   },
   "backstage": {
     "cli": {

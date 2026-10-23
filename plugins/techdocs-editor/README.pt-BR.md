@@ -2,6 +2,12 @@
 
 [English](README.md) · **Português**
 
+[![CI](https://github.com/edtroleis/backstage-plugin-techdocs-editor/actions/workflows/ci.yml/badge.svg)](https://github.com/edtroleis/backstage-plugin-techdocs-editor/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/@edtroleis/plugin-techdocs-editor?label=npm)](https://www.npmjs.com/package/@edtroleis/plugin-techdocs-editor)
+[![npm provenance](https://img.shields.io/badge/npm-provenance-blue)](https://www.npmjs.com/package/@edtroleis/plugin-techdocs-editor#provenance)
+[![Backstage](https://img.shields.io/badge/Backstage-1.56-36BAA2?logo=backstage&logoColor=white)](https://backstage.io)
+[![License](https://img.shields.io/github/license/edtroleis/backstage-plugin-techdocs-editor)](https://github.com/edtroleis/backstage-plugin-techdocs-editor/blob/main/LICENSE)
+
 Editor visual das páginas do TechDocs para quem não conhece Git: a pessoa clica no lápis da página,
 escreve num editor parecido com um editor de texto comum e publica. Por baixo, o fluxo é o mesmo de
 qualquer mudança de código no GitHub: branch, pull request, verificações da pipeline e merge.
@@ -20,6 +26,13 @@ qualquer mudança de código no GitHub: branch, pull request, verificações da 
   aguardando publicação e as datas de criação e atualização no alto.
 
 Quem pode escrever é decidido pelo GitHub: o editor age com o token da própria pessoa.
+
+## Funcionando
+
+| Editar e publicar | Verificações em linguagem simples | Markdown e lint |
+|:---:|:---:|:---:|
+| ![Lápis na página do TechDocs, editor visual, salvar e verificar, enviar para publicação](https://raw.githubusercontent.com/edtroleis/backstage-plugin-techdocs-editor/main/docs/media/edit-and-publish.gif) | ![Verificação que falhou explicada em linguagem simples; "ver linha" abre o Markdown no problema](https://raw.githubusercontent.com/edtroleis/backstage-plugin-techdocs-editor/main/docs/media/checks-in-plain-language.gif) | ![Troca para a visão Markdown; o lint aponta problemas enquanto se digita](https://raw.githubusercontent.com/edtroleis/backstage-plugin-techdocs-editor/main/docs/media/markdown-and-lint.gif) |
+| Lápis na página, editor visual, PR em rascunho, verificações, envio | Verificação que falhou em linguagem simples; "ver linha" vai até o problema | O mesmo documento em Markdown, com lint enquanto se digita |
 
 ## Pacotes
 

@@ -2,6 +2,12 @@
 
 **English** · [Português](README.pt-BR.md)
 
+[![CI](https://github.com/edtroleis/backstage-plugin-techdocs-editor/actions/workflows/ci.yml/badge.svg)](https://github.com/edtroleis/backstage-plugin-techdocs-editor/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/@edtroleis/plugin-techdocs-editor?label=npm)](https://www.npmjs.com/package/@edtroleis/plugin-techdocs-editor)
+[![npm provenance](https://img.shields.io/badge/npm-provenance-blue)](https://www.npmjs.com/package/@edtroleis/plugin-techdocs-editor#provenance)
+[![Backstage](https://img.shields.io/badge/Backstage-1.56-36BAA2?logo=backstage&logoColor=white)](https://backstage.io)
+[![License](https://img.shields.io/github/license/edtroleis/backstage-plugin-techdocs-editor)](https://github.com/edtroleis/backstage-plugin-techdocs-editor/blob/main/LICENSE)
+
 A visual editor for TechDocs pages, for people who don't know Git: they click the pencil on a page,
 write in something that looks like a regular text editor and publish. Underneath it is the same flow
 as any code change on GitHub: branch, pull request, pipeline checks and merge.
@@ -23,6 +29,13 @@ as any code change on GitHub: branch, pull request, pipeline checks and merge.
 - Texts in English (default) and Brazilian Portuguese.
 
 GitHub decides who can write: the editor acts with the person's own GitHub token.
+
+## See it working
+
+| Edit and publish | Checks in plain language | Markdown view and lint |
+|:---:|:---:|:---:|
+| ![Click the pencil on a TechDocs page, write in the visual editor, save and check, send for publication](https://raw.githubusercontent.com/edtroleis/backstage-plugin-techdocs-editor/main/docs/media/edit-and-publish.gif) | ![A failed check explained in plain language; "show line" opens the Markdown at the problem](https://raw.githubusercontent.com/edtroleis/backstage-plugin-techdocs-editor/main/docs/media/checks-in-plain-language.gif) | ![Switch to the Markdown view; the lint points out problems while typing](https://raw.githubusercontent.com/edtroleis/backstage-plugin-techdocs-editor/main/docs/media/markdown-and-lint.gif) |
+| Pencil on the page, visual editor, draft pull request, checks, send | A failed check in plain language; "show line" goes to the problem | Same document as Markdown, lint while typing |
 
 ## Packages
 
