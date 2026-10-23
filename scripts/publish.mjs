@@ -64,7 +64,9 @@ const packages = readdirSync(join(root, 'plugins'), { withFileTypes: true })
 
 const pending = packages.filter(pkg => !isLive(pkg));
 if (pending.length > 0) {
-  // The packages import each other: build all of them before packing
+  // The build bundles the type declarations from `tsc` (dist-types); the packages import each
+  // other, so all of them are built before packing
+  run('yarn', ['tsc'], { stdio: 'inherit' });
   run('yarn', ['workspaces', 'foreach', '-At', '--include', '@edtroleis/*', 'run', 'build'], { stdio: 'inherit' });
   const out = mkdtempSync(join(tmpdir(), 'techdocs-editor-pack-'));
   for (const pkg of pending) {
