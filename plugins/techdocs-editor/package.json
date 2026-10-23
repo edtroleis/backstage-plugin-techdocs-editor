@@ -85,7 +85,7 @@
     "@codemirror/lint": "^6.9.7",
     "@codemirror/search": "^6.7.2",
     "@codemirror/state": "^6.7.6",
-    "@codemirror/view": "^6.43.14",
+    "@codemirror/view": "^6.43.15",
     "@edtroleis/plugin-techdocs-editor-common": "workspace:^",
     "@lezer/highlight": "^1.2.5",
     "@material-ui/core": "^4.12.2",
