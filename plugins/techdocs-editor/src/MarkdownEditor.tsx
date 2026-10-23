@@ -4,6 +4,7 @@ import { Crepe } from '@milkdown/crepe';
 import { editorViewCtx, remarkCtx, remarkStringifyOptionsCtx } from '@milkdown/kit/core';
 import { STRINGIFY_OPTIONS, repoLineNumbers } from '@edtroleis/plugin-techdocs-editor-common';
 import { defaultCodeLanguagePlugin } from './defaultCodeLanguage';
+import { listCaretFixPlugin } from './listCaretFix';
 import { inlineCodeTypingPlugin } from './inlineCodeTyping';
 import { buildTopBar } from './topBar';
 import { EditorText, headingOptions, labelTopBar, selectionToolbar, slashMenu } from './labels';
@@ -130,6 +131,7 @@ export const MarkdownEditor = forwardRef<MarkdownEditorHandle, Props>(
       .config(ctx => ctx.update(remarkStringifyOptionsCtx, prev => ({ ...prev, ...STRINGIFY_OPTIONS })))
       .use(defaultCodeLanguagePlugin)
       .use(inlineCodeTypingPlugin)
+      .use(listCaretFixPlugin)
       .use(visualSearchPlugin);
     crepeRef.current = crepe;
 
