@@ -3,6 +3,7 @@ import { GitHubClient, PullRequest, Repo } from './github';
 import type { Configuration } from 'markdownlint';
 import { docsDirFromMkdocs, pageFileCandidates, toEditor } from './mkdocs';
 import { DEFAULT_LINT_CONFIG, LINT_CONFIG_FILES, parseLintConfig } from './lint';
+import { loadRepoConfig, type RepoConfig } from './repoConfig';
 
 const SLUG_ANNOTATION = 'github.com/project-slug';
 
@@ -52,6 +53,8 @@ export type EditSession = {
   hasWorkflows: boolean;
   /** Configuração do markdownlint do repositório (a mesma que a pipeline usa). */
   lintConfig: Configuration;
+  /** `.techdocs-editor.yaml` do repositório (a pipeline dele: modo, mensagens, tempo para começar). */
+  repoConfig: RepoConfig;
 };
 
 /** Opções da sessão que vêm da configuração do plugin. */
@@ -131,7 +134,7 @@ export async function loadSession(
   const { filePath, docsDir } = await findPageFile(client, entity, page, repo.defaultBranch);
 
   const branch = branchFor(login, filePath, options.branchPattern);
-  const [branchSha, mainSha, pr, rules, hasWorkflows, lintConfig] = await Promise.all([
+  const [branchSha, mainSha, pr, rules, hasWorkflows, lintConfig, repoConfig] = await Promise.all([
     client.getBranchSha(branch),
     client.getBranchSha(repo.defaultBranch),
     client.findOpenPullRequest(branch),
@@ -139,6 +142,7 @@ export async function loadSession(
     // Sem permissão para listar workflows: supõe que há pipeline (o caso mais comum)
     client.hasWorkflows().catch(() => true),
     loadLintConfig(client, repo.defaultBranch),
+    loadRepoConfig(client, repo.defaultBranch),
   ]);
   const file = await client.getFile(filePath, branchSha ? branch : mainSha!);
   if (!file) throw new DraftFileMissingError(filePath, branch);
@@ -159,5 +163,6 @@ export async function loadSession(
     requiredChecks: rules.requiredChecks,
     hasWorkflows,
     lintConfig,
+    repoConfig,
   };
 }

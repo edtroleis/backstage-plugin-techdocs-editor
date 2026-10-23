@@ -24,6 +24,8 @@ const WIKI = join(__dirname, 'wiki-fixture');
 
 /** Os 4 checks obrigatórios do ruleset (nomes dos jobs do workflow). */
 export const CHECK_NAMES = ['Formatação do texto', 'Links', 'Dados sensíveis', 'Montagem da documentação'];
+/** O que um CI de fora do GitHub Actions (Jenkins) reporta como commit status. */
+export const EXTERNAL_CHECK_NAMES = ['continuous-integration/jenkins/pr-merge'];
 
 type Commit = { sha: string; message: string; parents: string[]; tree: string; date: string };
 type PullRequest = {
@@ -83,6 +85,13 @@ export class FakeGitHub {
   requiredApprovals = 0;
   /** O repositório tem pipeline (workflows e checks obrigatórios). Sem ela, nenhum check roda. */
   hasPipeline = true;
+  /**
+   * De onde vem a pipeline: GitHub Actions (checks, workflows, checks obrigatórios no ruleset) ou um
+   * CI externo como o Jenkins (commit statuses, nenhum workflow, nada no ruleset).
+   */
+  pipelineKind: 'actions' | 'external' = 'actions';
+  /** Checks obrigatórios na proteção de branch clássica (fora dos rulesets). */
+  classicRequiredChecks: string[] = [];
   canWrite = true;
   /** Admin do repositório: o editor oferece "Configurar verificações" se faltar algo. */
   isAdmin = false;
@@ -334,7 +343,27 @@ export class FakeGitHub {
     this.nextOutcome = undefined;
   }
 
+  private get checkNames() {
+    return this.pipelineKind === 'external' ? EXTERNAL_CHECK_NAMES : CHECK_NAMES;
+  }
+
+  /** Commit statuses do CI externo, como a API do GitHub os devolve. */
+  private statuses(sha: string, polling = false) {
+    if (this.pipelineKind !== 'external') return [];
+    return this.results(sha, polling).map(r => ({
+      id: r.id,
+      context: r.name,
+      state: r.conclusion,
+      target_url: `https://jenkins.example.com/job/wiki/${r.id}`,
+    }));
+  }
+
   private checkRuns(sha: string, polling = false) {
+    return this.pipelineKind === 'actions' ? this.results(sha, polling) : [];
+  }
+
+  /** Resultado da pipeline no commit, qualquer que seja o jeito de reportar. */
+  private results(sha: string, polling = false) {
     const outcome = this.outcomes.get(sha);
     if (!outcome) return [];
     const wait = this.pendingStart.get(sha);
@@ -342,7 +371,7 @@ export class FakeGitHub {
       this.pendingStart.set(sha, wait - 1);
       return [];
     }
-    return CHECK_NAMES.map((name, i) => ({
+    return this.checkNames.map((name, i) => ({
       id: this.checkId(sha, i),
       name,
       status: 'completed',
@@ -369,7 +398,7 @@ export class FakeGitHub {
   }
 
   private allChecksPassed(sha: string) {
-    const runs = this.checkRuns(sha);
+    const runs = this.results(sha);
     return runs.length > 0 && runs.every(r => r.conclusion === 'success');
   }
 
@@ -448,7 +477,7 @@ export class FakeGitHub {
       if (this.rulesets.length) return ok(this.rulesets.flatMap(r => r.rules));
       if (!this.hasRuleset) return ok([]);
       const rules: unknown[] = [{ type: 'pull_request', parameters: { required_approving_review_count: this.requiredApprovals } }];
-      if (this.hasPipeline) {
+      if (this.hasPipeline && this.pipelineKind === 'actions') {
         rules.push({
           type: 'required_status_checks',
           parameters: { required_status_checks: CHECK_NAMES.map(context => ({ context })) },
@@ -457,7 +486,16 @@ export class FakeGitHub {
       return ok(rules);
     }
     if (method === 'GET' && rest === '/actions/workflows') {
-      return ok({ total_count: this.hasPipeline ? 1 : 0, workflows: [] });
+      return ok({ total_count: this.hasPipeline && this.pipelineKind === 'actions' ? 1 : 0, workflows: [] });
+    }
+    const m0 = rest.match(/^\/branches\/(.+)$/);
+    if (method === 'GET' && m0) {
+      const contexts = this.classicRequiredChecks;
+      return ok({
+        name: m0[1],
+        protected: contexts.length > 0,
+        ...(contexts.length ? { protection: { enabled: true, required_status_checks: { contexts, checks: [] } } } : {}),
+      });
     }
 
     let m = rest.match(/^\/contents\/(.+)$/);
@@ -567,6 +605,11 @@ export class FakeGitHub {
 
     m = rest.match(/^\/commits\/(\w+)\/check-runs$/);
     if (m && method === 'GET') return ok({ check_runs: this.checkRuns(m[1], true) });
+    m = rest.match(/^\/commits\/(\w+)\/status$/);
+    if (m && method === 'GET') {
+      const statuses = this.statuses(m[1], true);
+      return ok({ state: statuses.every(st => st.state === 'success') ? 'success' : 'failure', statuses });
+    }
     m = rest.match(/^\/check-runs\/(\d+)\/annotations$/);
     if (m && method === 'GET') return ok(this.annotations(Number(m[1])));
     // Histórico de um arquivo: commits da branch (pelo primeiro pai) em que o arquivo mudou

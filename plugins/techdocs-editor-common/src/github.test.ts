@@ -100,3 +100,69 @@ describe('requisições condicionais (ETag)', () => {
     expect((fetch.mock.calls[1] as any)[1].headers['If-None-Match']).toBeUndefined();
   });
 });
+
+describe('pipelines de qualquer CI', () => {
+  const json = (body: unknown) => new Response(JSON.stringify(body));
+  const clientWith = (routes: Record<string, unknown>) => {
+    const fetch = jest.fn(async (url: string) => {
+      const path = new URL(url).pathname;
+      if (!(path in routes)) return new Response(JSON.stringify({ message: 'Not Found' }), { status: 404 });
+      return json(routes[path]);
+    });
+    return new GitHubClient({ baseUrl: 'https://api.github.com', fetch: fetch as any, headers: {} }, 'dono/wiki');
+  };
+
+  it('commit statuses (ex.: Jenkins) viram verificações, junto com os checks', async () => {
+    const client = clientWith({
+      '/repos/dono/wiki/commits/abc/check-runs': {
+        check_runs: [{ id: 1, name: 'Links', status: 'completed', conclusion: 'success', html_url: 'u1' }],
+      },
+      '/repos/dono/wiki/commits/abc/status': {
+        statuses: [
+          { id: 10, context: 'continuous-integration/jenkins/pr-merge', state: 'failure', target_url: 'https://ci/1' },
+          { id: 11, context: 'ci/circleci: build', state: 'pending', target_url: null },
+          { id: 12, context: 'Links', state: 'success', target_url: 'u' },
+        ],
+      },
+    });
+
+    expect(await client.getVerifications('abc')).toEqual([
+      { id: 1, name: 'Links', status: 'completed', conclusion: 'success', htmlUrl: 'u1' },
+      {
+        id: 10,
+        name: 'continuous-integration/jenkins/pr-merge',
+        status: 'completed',
+        conclusion: 'failure',
+        htmlUrl: 'https://ci/1',
+        source: 'status',
+      },
+      { id: 11, name: 'ci/circleci: build', status: 'in_progress', conclusion: null, htmlUrl: '', source: 'status' },
+    ]);
+  });
+
+  it('checks obrigatórios da proteção de branch clássica entram junto com os dos rulesets', async () => {
+    const client = clientWith({
+      '/repos/dono/wiki/rules/branches/main': [
+        { type: 'pull_request', parameters: { required_approving_review_count: 1 } },
+        { type: 'required_status_checks', parameters: { required_status_checks: [{ context: 'Links' }] } },
+      ],
+      '/repos/dono/wiki/branches/main': {
+        name: 'main',
+        protected: true,
+        protection: { required_status_checks: { contexts: ['jenkins', 'Links'], checks: [{ context: 'jenkins' }] } },
+      },
+    });
+
+    expect(await client.getBranchRules('main')).toEqual({
+      requiresPullRequest: true,
+      requiredApprovals: 1,
+      requiredChecks: ['Links', 'jenkins'],
+    });
+  });
+
+  it('sem conseguir ler a branch, valem só os rulesets', async () => {
+    const client = clientWith({ '/repos/dono/wiki/rules/branches/main': [] });
+
+    expect(await client.getBranchRules('main')).toEqual({ requiresPullRequest: false, requiredApprovals: 0, requiredChecks: [] });
+  });
+});

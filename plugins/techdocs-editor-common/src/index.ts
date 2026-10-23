@@ -16,3 +16,4 @@ export * from './session';
 export * from './syncMain';
 export * from './permissions';
 export * from './setup';
+export * from './repoConfig';

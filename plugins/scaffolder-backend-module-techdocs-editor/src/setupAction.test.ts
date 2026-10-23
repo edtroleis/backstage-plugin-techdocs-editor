@@ -34,6 +34,7 @@ function fakeGitHub() {
     }
     if (path.includes('/contents/')) return new Response('{}', { status: 404 });
     if (path.includes('/rules/branches/')) return json([]);
+    if (path.endsWith('/branches/main')) return json({ name: 'main', protected: false });
     if (method === 'GET' && path.endsWith('/rulesets')) return json([]);
     if (method === 'POST' && path.endsWith('/rulesets')) return json({ id: 1 });
     return new Response(JSON.stringify({ message: `não simulado: ${method} ${path}` }), { status: 501 });

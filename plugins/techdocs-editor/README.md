@@ -104,17 +104,37 @@ techdocsEditor:
     idleIntervalSeconds: 60   # otherwise; nothing while the browser tab is in the background
 ```
 
-Per documentation, the annotation `techdocs-editor/verification: pipeline | editor` overrides the
-configuration.
-
-### Checks: with and without a pipeline
+### Checks: any CI, with or without a pipeline
 
 | Repository | What "Save and check" verifies | Sending |
 |------------|--------------------------------|---------|
-| With workflows or required checks (`mode: auto` detects it) | The GitHub checks on the pull request, whatever the job names | Allowed when no check failed |
-| Without workflows (`mode: auto` detects it) or `mode: editor` | The editor's lint with the repository's rules; the panel explains there are no automatic checks | Allowed when the lint passes |
+| With GitHub Actions workflows, or required checks in a ruleset or in classic branch protection (`mode: auto` detects it) | Everything the CI reports on the pull request: **check runs** (GitHub Actions, Azure Pipelines, Jenkins with GitHub Checks…) and **commit statuses** (Jenkins, CircleCI and other external CIs), whatever the job names | Allowed when no check failed |
+| Without any of that (`mode: auto` detects it) or `mode: editor` | The editor's lint with the repository's rules; the panel explains there are no automatic checks | Allowed when the lint passes |
 
 If no check starts within `startTimeoutSeconds`, the panel says so and links the pull request.
+Line-level problems ("show line") come from check run annotations; commit statuses only link to the
+CI.
+
+### Per-repository configuration
+
+With many documentation repositories, each team describes its own pipeline in
+`.techdocs-editor.yaml` at the root of the repository (main branch), without touching the portal's
+`app-config`:
+
+```yaml
+verification:
+  mode: pipeline              # auto | pipeline | editor
+  startTimeoutSeconds: 600    # e.g. a Jenkins queue that takes a while to start
+  checkHelp:                  # plain-language message per job name, added to the portal's
+    continuous-integration/jenkins/pr-merge: The documentation build failed. Open the details.
+```
+
+Precedence: the catalog annotation `techdocs-editor/verification: pipeline | editor`, then
+`.techdocs-editor.yaml`, then `app-config`. `checkHelp` from the repository is merged with the
+portal's (the repository wins for the same job name). Invalid values are ignored (the portal's
+apply), so a typo does not block the editor. The repository setup does not add the default
+workflow when the repository has its own CI (required checks) or the file sets `mode: pipeline` or
+`mode: editor`.
 
 ### Usage modes
 

@@ -17,6 +17,8 @@ type State = {
   requiresPullRequest?: boolean;
   requiredChecks?: string[];
   openSetupPr?: boolean;
+  /** Conteúdo dos arquivos (os de `files` sem conteúdo aqui ficam vazios). */
+  contents?: Record<string, string>;
 };
 
 /** Cliente do GitHub só com o que o setup usa, guardando as escritas. */
@@ -31,7 +33,8 @@ function fakeClient(state: State) {
       squashWithPrMessage: (state.isAdmin ?? true) ? (state.squash ?? false) : undefined,
     }),
     hasWorkflows: async () => state.hasWorkflows ?? false,
-    getFile: async (path: string) => ((state.files ?? []).includes(path) ? { content: '', sha: 'x' } : null),
+    getFile: async (path: string) =>
+      (state.files ?? []).includes(path) ? { content: state.contents?.[path] ?? '', sha: 'x' } : null,
     getBranchRules: async () => ({
       requiresPullRequest: state.requiresPullRequest ?? false,
       requiredApprovals: 0,
@@ -100,6 +103,23 @@ describe('planSetup', () => {
       squash: true,
     });
     expect((await planSetup(client)).steps).toEqual(['ruleset']);
+  });
+
+  it('CI de fora do GitHub Actions com checks obrigatórios (ex.: Jenkins): não oferece o workflow padrão', async () => {
+    const { client } = fakeClient({ requiresPullRequest: true, requiredChecks: ['continuous-integration/jenkins/pr-merge'] });
+    expect((await planSetup(client)).steps).not.toContain('workflow');
+  });
+
+  it('o time disse no .techdocs-editor.yaml que tem pipeline própria, ou que não quer uma: sem workflow padrão', async () => {
+    for (const mode of ['pipeline', 'editor']) {
+      const { client } = fakeClient({
+        files: ['.techdocs-editor.yaml'],
+        contents: { '.techdocs-editor.yaml': `verification:\n  mode: ${mode}\n` },
+      });
+      expect((await planSetup(client)).steps).not.toContain('workflow');
+    }
+    const { client } = fakeClient({ files: ['.techdocs-editor.yaml'], contents: { '.techdocs-editor.yaml': 'verification:\n  mode: auto\n' } });
+    expect((await planSetup(client)).steps).toContain('workflow');
   });
 
   it('quem não é admin não vê passos de configuração do repositório', async () => {

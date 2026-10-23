@@ -93,16 +93,34 @@ techdocsEditor:
     idleIntervalSeconds: 60   # parado; com a aba em segundo plano, nenhuma consulta
 ```
 
-Por documentação, a anotação `techdocs-editor/verification: pipeline | editor` vale sobre a configuração.
-
-### Verificação: com e sem pipeline
+### Verificação: qualquer CI, com ou sem pipeline
 
 | Repositório | O que "Salvar e verificar" confere | Enviar |
 |-------------|-----------------------------------|--------|
-| Com workflows ou checks obrigatórios (`mode: auto` detecta) | Os checks do GitHub no PR, com qualquer nome de job | Liberado quando nenhum check falhou |
-| Sem workflows (`mode: auto` detecta) ou `mode: editor` | O lint do editor, com as regras do repositório; o painel explica que não há verificações automáticas | Liberado com o lint ok |
+| Com workflows do GitHub Actions, ou checks obrigatórios num ruleset ou na proteção de branch clássica (`mode: auto` detecta) | Tudo o que o CI reporta no PR: **checks** (GitHub Actions, Azure Pipelines, Jenkins com GitHub Checks…) e **commit statuses** (Jenkins, CircleCI e outros CIs externos), com qualquer nome de job | Liberado quando nenhum check falhou |
+| Sem nada disso (`mode: auto` detecta) ou `mode: editor` | O lint do editor, com as regras do repositório; o painel explica que não há verificações automáticas | Liberado com o lint ok |
 
-Se nenhum check começar em `startTimeoutSeconds`, o painel avisa e mostra o link do PR.
+Se nenhum check começar em `startTimeoutSeconds`, o painel avisa e mostra o link do PR. O "ver linha"
+vem dos apontamentos dos checks; commit statuses só têm o link para o CI.
+
+### Configuração por repositório
+
+Com muitos repositórios de documentação, cada time descreve a própria pipeline no
+`.techdocs-editor.yaml` da raiz do repositório (branch principal), sem mexer no `app-config` do portal:
+
+```yaml
+verification:
+  mode: pipeline              # auto | pipeline | editor
+  startTimeoutSeconds: 600    # ex.: fila do Jenkins que demora a começar
+  checkHelp:                  # mensagem em linguagem simples por nome de job, somada às do portal
+    continuous-integration/jenkins/pr-merge: A documentação não pôde ser montada. Abra os detalhes.
+```
+
+Vale, nesta ordem: a anotação `techdocs-editor/verification: pipeline | editor` do catálogo, o
+`.techdocs-editor.yaml` e o `app-config`. O `checkHelp` do repositório é somado ao do portal (para o
+mesmo job, vale o do repositório). Valor inválido é ignorado (vale o do portal), para um erro de
+digitação não travar o editor. O setup do repositório não oferece o workflow padrão quando o
+repositório tem CI próprio (checks obrigatórios) ou o arquivo diz `mode: pipeline` ou `mode: editor`.
 
 ### Modos de uso
 

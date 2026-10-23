@@ -1,5 +1,5 @@
 import { Page, expect, test } from '@playwright/test';
-import { CHECK_NAMES, FakeGitHub, LOGIN, wikiFiles } from './fake-github';
+import { CHECK_NAMES, EXTERNAL_CHECK_NAMES, FakeGitHub, LOGIN, wikiFiles } from './fake-github';
 import {
   ENTITY,
   editor,
@@ -548,6 +548,63 @@ test.describe('repositório sem pipeline', () => {
     expect(github.pipelineRuns).toHaveLength(0);
     await panelButton(page, 'Enviar para publicação').click();
     await expect(status(page)).toHaveText('Aguardando publicação');
+  });
+});
+
+test.describe('pipeline de qualquer CI', () => {
+  const JENKINS = EXTERNAL_CHECK_NAMES[0];
+
+  test('CI externo (Jenkins) com commit status e checks obrigatórios na proteção clássica: verifica e trava o envio', async ({ page }) => {
+    const github = new FakeGitHub();
+    github.pipelineKind = 'external';
+    github.classicRequiredChecks = [JENKINS];
+    github.nextOutcome = { [JENKINS]: { conclusion: 'failure' } };
+    await openEditor(page, github);
+    await edit(page);
+    await panelButton(page, 'Salvar e verificar').click();
+
+    // Sem workflow do GitHub Actions, o modo automático vê a pipeline pelos checks obrigatórios
+    await expect(status(page)).toHaveText('Precisa de ajustes');
+    await expect(page.getByTestId('no-pipeline')).toHaveCount(0);
+    await expect(page.getByText(JENKINS)).toBeVisible();
+    await expect(page.getByRole('link', { name: 'ver detalhes' })).toHaveAttribute('href', /jenkins\.example\.com/);
+    await expectEnabled(page, { 'Enviar para publicação': false });
+
+    await edit(page, ' Corrigido.');
+    await panelButton(page, 'Salvar e verificar').click();
+    await expect(status(page)).toHaveText('Rascunho');
+    await panelButton(page, 'Enviar para publicação').click();
+    await expect(status(page)).toHaveText('Aguardando publicação');
+  });
+
+  test('.techdocs-editor.yaml do repositório: modo pipeline e mensagem do job, valendo sobre o portal', async ({ page }) => {
+    const github = new FakeGitHub();
+    github.pipelineKind = 'external';
+    github.publishOnMain(
+      '.techdocs-editor.yaml',
+      `verification:\n  mode: pipeline\n  checkHelp:\n    ${JENKINS}: O Jenkins do time encontrou um problema na página.\n    Links: Mensagem do repositório para Links.\n`,
+    );
+    github.nextOutcome = { [JENKINS]: { conclusion: 'failure' } };
+    await openEditor(page, github);
+    await edit(page);
+    await panelButton(page, 'Salvar e verificar').click();
+
+    // Sem workflow nem checks obrigatórios, o automático usaria só o lint: vale o modo do repositório
+    await expect(status(page)).toHaveText('Precisa de ajustes');
+    await expect(page.getByText('O Jenkins do time encontrou um problema na página.')).toBeVisible();
+  });
+
+  test('.techdocs-editor.yaml: tempo próprio para o CI começar', async ({ page }) => {
+    const github = new FakeGitHub();
+    github.pipelineKind = 'external';
+    github.classicRequiredChecks = [JENKINS];
+    // O CI nunca começa; no portal o aviso viria só depois de 120 s
+    github.pipelineStartDelay = 1000;
+    github.publishOnMain('.techdocs-editor.yaml', 'verification:\n  startTimeoutSeconds: 1\n');
+    await openEditor(page, github);
+    await edit(page);
+    await panelButton(page, 'Salvar e verificar').click();
+    await expect(page.getByTestId('checks-waiting')).toContainText('O GitHub não iniciou nenhuma verificação', { timeout: 30_000 });
   });
 });
 

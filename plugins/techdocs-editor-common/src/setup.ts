@@ -1,4 +1,5 @@
 import { GitHubClient, PullRequest, SQUASH_MERGE_SETTINGS, TreeEntry } from './github';
+import { loadRepoConfig } from './repoConfig';
 import { LINT_CONFIG_FILES } from './lint';
 
 /**
@@ -133,16 +134,20 @@ const exists = async (client: GitHubClient, paths: string[], ref: string) =>
 export async function planSetup(client: GitHubClient): Promise<SetupPlan> {
   const repo = await client.getRepo();
   const ref = repo.defaultBranch;
-  const [hasWorkflows, hasLintConfig, hasStandardChecks, rules] = await Promise.all([
+  const [hasWorkflows, hasLintConfig, hasStandardChecks, rules, repoConfig] = await Promise.all([
     client.hasWorkflows().catch(() => true),
     exists(client, LINT_CONFIG_FILES, ref),
     exists(client, STANDARD_WORKFLOWS, ref),
     client.getBranchRules(ref),
+    loadRepoConfig(client, ref),
   ]);
   const steps: SetupStep[] = [];
   // O GitHub leva alguns segundos para listar um workflow recém-enviado (ex.: logo depois do
-  // publish:github do template): com o arquivo padrão lá, não abre um PR duplicando os checks
-  if (!hasWorkflows && !hasStandardChecks) steps.push('workflow');
+  // publish:github do template): com o arquivo padrão lá, não abre um PR duplicando os checks.
+  // Pipeline de fora do GitHub Actions (checks obrigatórios, ou o time disse no .techdocs-editor.yaml
+  // que tem pipeline ou que não quer uma) também não ganha o workflow padrão
+  const ownPipeline = rules.requiredChecks.length > 0 || ['pipeline', 'editor'].includes(repoConfig.verification.mode ?? '');
+  if (!hasWorkflows && !hasStandardChecks && !ownPipeline) steps.push('workflow');
   if (!hasLintConfig) steps.push('markdownlint');
   if (repo.isAdmin && repo.squashWithPrMessage === false) steps.push('merge');
   if (repo.isAdmin && (!rules.requiresPullRequest || (hasStandardChecks && !rules.requiredChecks.length))) {

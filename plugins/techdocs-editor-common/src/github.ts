@@ -88,7 +88,7 @@ export type BranchRules = {
   /** Algum ruleset ativo exige PR para mudar a branch. */
   requiresPullRequest: boolean;
   requiredApprovals: number;
-  /** Nomes dos checks que precisam passar (os jobs da pipeline). */
+  /** Nomes dos checks que precisam passar (os jobs da pipeline), dos rulesets e da proteção clássica. */
   requiredChecks: string[];
 };
 
@@ -141,6 +141,8 @@ export type CheckRun = {
   status: 'queued' | 'in_progress' | 'completed' | string;
   conclusion: string | null;
   htmlUrl: string;
+  /** Commit status (a API de CIs externos como Jenkins e CircleCI): sem apontamentos de linha. */
+  source?: 'status';
 };
 
 export type Annotation = {
@@ -177,6 +179,12 @@ function toPullRequest(pr: any): PullRequest {
     headSha: pr.head.sha,
   };
 }
+
+/** Estado de um commit status (pending, success, failure, error) como a conclusão de um check. */
+const statusConclusion = (state: string): string | null => {
+  if (state === 'pending') return null;
+  return state === 'success' ? 'success' : 'failure';
+};
 
 export class GitHubClient {
   /** Última resposta de cada GET com ETag: a próxima consulta é condicional e um 304 não conta no limite do GitHub. */
@@ -267,9 +275,21 @@ export class GitHubClient {
     else await this.request('POST', `/repos/${this.slug}/rulesets`, ruleset);
   }
 
-  /** O que os rulesets ativos exigem para o merge na branch: aprovações e checks obrigatórios. */
+  /**
+   * O que a branch exige para o merge: aprovações e checks obrigatórios, dos rulesets e da proteção
+   * de branch clássica (que o GitHub mostra a quem só lê, no resumo da branch).
+   */
   async getBranchRules(branch: string): Promise<BranchRules> {
-    const rules = await this.request<any[]>('GET', `/repos/${this.slug}/rules/branches/${encodePath(branch)}`);
+    const [rules, summary] = await Promise.all([
+      this.request<any[]>('GET', `/repos/${this.slug}/rules/branches/${encodePath(branch)}`),
+      // Informação a mais: se a consulta falhar, valem só os rulesets
+      this.request<any>('GET', `/repos/${this.slug}/branches/${encodePath(branch)}`).catch(() => null),
+    ]);
+    const classic = summary?.protection?.required_status_checks;
+    const classicChecks: string[] = [
+      ...(classic?.contexts ?? []),
+      ...(classic?.checks ?? []).map((c: { context: string }) => c.context),
+    ];
     return {
       requiresPullRequest: rules.some(r => r.type === 'pull_request'),
       requiredApprovals: Math.max(
@@ -278,10 +298,15 @@ export class GitHubClient {
           .filter(r => r.type === 'pull_request')
           .map(r => r.parameters?.required_approving_review_count ?? 0),
       ),
-      requiredChecks: rules
-        .filter(r => r.type === 'required_status_checks')
-        .flatMap(r => r.parameters?.required_status_checks ?? [])
-        .map((c: { context: string }) => c.context),
+      requiredChecks: [
+        ...new Set([
+          ...rules
+            .filter(r => r.type === 'required_status_checks')
+            .flatMap(r => r.parameters?.required_status_checks ?? [])
+            .map((c: { context: string }) => c.context),
+          ...classicChecks,
+        ]),
+      ],
     };
   }
 
@@ -476,6 +501,32 @@ export class GitHubClient {
       conclusion: c.conclusion,
       htmlUrl: c.html_url,
     }));
+  }
+
+  /**
+   * Commit statuses (a API anterior aos checks, usada por CIs externos como Jenkins e CircleCI), no
+   * formato dos checks. O GitHub devolve o último status de cada `context`.
+   */
+  async getCommitStatuses(sha: string): Promise<CheckRun[]> {
+    const res = await this.request<any>('GET', `/repos/${this.slug}/commits/${sha}/status?per_page=100`);
+    return (res.statuses ?? []).map((s: any) => ({
+      id: s.id,
+      name: s.context,
+      status: s.state === 'pending' ? 'in_progress' : 'completed',
+      conclusion: statusConclusion(s.state),
+      htmlUrl: s.target_url ?? '',
+      source: 'status' as const,
+    }));
+  }
+
+  /**
+   * Todas as verificações do commit: os checks e os commit statuses, qualquer que seja a pipeline.
+   * Um status com o nome de um check repete o check (há CIs que reportam dos dois jeitos) e sai.
+   */
+  async getVerifications(sha: string): Promise<CheckRun[]> {
+    const [runs, statuses] = await Promise.all([this.getCheckRuns(sha), this.getCommitStatuses(sha)]);
+    const names = new Set(runs.map(r => r.name));
+    return [...runs, ...statuses.filter(s => !names.has(s.name))];
   }
 
   async getAnnotations(checkRunId: number): Promise<Annotation[]> {

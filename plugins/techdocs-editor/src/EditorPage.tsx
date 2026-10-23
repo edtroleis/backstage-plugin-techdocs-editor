@@ -25,7 +25,7 @@ import { PublishPanel } from './PublishPanel';
 import { DocsToEdit } from './DocsToEdit';
 import { ConflictResolver } from './ConflictResolver';
 import { HistoryDialog } from './HistoryDialog';
-import { useEditorConfig, verificationFor } from './config';
+import { checkHelpFor, useEditorConfig, verificationFor } from './config';
 import { useEditorTranslation } from './useEditorTranslation';
 import { SearchBar, useVisualSearch } from './SearchBar';
 import { EditorNotices } from './EditorNotices';
@@ -273,7 +273,7 @@ const EditorWorkspace = ({ loaded, othersPrs, docsUrl, title }: WorkspaceProps) 
           <Grid item xs={12} md={4}>
             <PublishPanel
               verification={verificationFor(entity, config, session)}
-              checkHelp={config.checkHelp}
+              checkHelp={checkHelpFor(config, session)}
               stalled={flow.stalled}
               pr={flow.pr}
               checks={flow.checks}

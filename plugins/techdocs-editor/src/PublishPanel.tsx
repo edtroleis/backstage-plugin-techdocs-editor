@@ -155,6 +155,8 @@ export const PublishPanel = (props: Props) => {
   const { t, ruleText } = useEditorTranslation();
   const { pr, checks, checksSummary, requiredApprovals, dirty, busy, unverified, conflict } = props;
   const openPr = pr?.state === 'open' ? pr : null;
+  // Commit statuses não têm apontamentos de linha (e o id deles não é o de um check)
+  const annotationsOf = (run: CheckRun) => (run.source === 'status' ? [] : props.annotations[run.id] ?? []);
   const sendLabel = requiredApprovals > 0 ? t('panel.sendForReview') : t('panel.sendForPublication');
   // Com verificação falhando e nada novo para salvar, publicar só deixaria o PR esperando para sempre
   const blockedByChecks = Boolean(openPr) && checksSummary === 'failed' && !dirty && !unverified;
@@ -321,7 +323,7 @@ export const PublishPanel = (props: Props) => {
             )}
             <List dense disablePadding>
               {props.verification === 'pipeline' && !unverified && checks.map(run => (
-                <ListItem key={run.id} disableGutters alignItems="flex-start">
+                <ListItem key={`${run.source ?? 'check'}-${run.id}`} disableGutters alignItems="flex-start">
                   <ListItemIcon style={{ minWidth: 32 }}>
                     {checkIcon(run, classes)}
                   </ListItemIcon>
@@ -331,7 +333,7 @@ export const PublishPanel = (props: Props) => {
                       isFailed(run) ? (
                         <>
                           {failureHelp(run.name, props.checkHelp) ?? t('panel.defaultFailure')}
-                          {(props.annotations[run.id] ?? []).slice(0, 5).map((a, i) => (
+                          {annotationsOf(run).slice(0, 5).map((a, i) => (
                             <span key={i} className={classes.annotation} style={{ display: 'block' }}>
                               <strong>{t('panel.lineLabel', { line: String(a.line) })}</strong>{' '}
                               {ruleText(parseAnnotation(a).rule, parseAnnotation(a).description)}
@@ -341,12 +343,12 @@ export const PublishPanel = (props: Props) => {
                               </MuiLink>
                             </span>
                           ))}
-                          {dirty && (props.annotations[run.id] ?? []).length > 0 && (
+                          {dirty && annotationsOf(run).length > 0 && (
                             <span className={classes.annotation} style={{ display: 'block' }}>
                               {t('panel.linesFromSaved')}
                             </span>
                           )}
-                          <Link to={run.htmlUrl}>{t('panel.details')}</Link>
+                          {run.htmlUrl && <Link to={run.htmlUrl}>{t('panel.details')}</Link>}
                         </>
                       ) : undefined
                     }

@@ -50,8 +50,9 @@ export function useChecks({ client, pr, setPr, expectedHead, pollMs, idlePollMs,
     // Só as verificações do último commit salvo, mesmo que o PR ainda não tenha sido atualizado
     const head = expectedHead.current ?? latest.headSha;
     if (latest.headSha === expectedHead.current) expectedHead.current = undefined;
-    // Jobs pulados (ex.: publicação, que só roda na main) não são verificações do rascunho
-    const runs = (await client.getCheckRuns(head)).filter(r => r.conclusion !== 'skipped');
+    // Checks e commit statuses (CIs externos). Jobs pulados (ex.: publicação, que só roda na main)
+    // não são verificações do rascunho
+    const runs = (await client.getVerifications(head)).filter(r => r.conclusion !== 'skipped');
     // Salvou de novo enquanto esta consulta rodava: o resultado é de um commit antigo
     if ((expectedHead.current ?? head) !== head) return;
     setPr({ ...latest, headSha: head });
@@ -59,7 +60,8 @@ export function useChecks({ client, pr, setPr, expectedHead, pollMs, idlePollMs,
     active.current = !latest.draft || runs.length === 0 || runs.some(r => r.status !== 'completed');
     setStalled(runs.length === 0 && Date.now() - waitingSince.current > startTimeoutMs);
     setPollError(undefined);
-    const failed = runs.filter(r => isFailed(r) && !annotations[r.id]);
+    // Commit statuses não têm apontamentos de linha
+    const failed = runs.filter(r => isFailed(r) && r.source !== 'status' && !annotations[r.id]);
     if (failed.length) {
       // Número de linha não ajuda num editor visual: anexa o trecho de texto daquela linha
       const files = new Map<string, Promise<string | undefined>>();

@@ -39,10 +39,15 @@ export interface Config {
       skipCi?: boolean;
     };
     verification?: {
+      /*
+       * Cada repositório pode trocar mode, startTimeoutSeconds e checkHelp no próprio
+       * .techdocs-editor.yaml (ver o README); a anotação techdocs-editor/verification vale sobre os dois.
+       */
       /**
        * O que "Salvar e verificar" confere:
-       * - auto (padrão): a pipeline, se o repositório tiver workflows; senão, só o lint do editor;
-       * - pipeline: sempre os checks do GitHub;
+       * - auto (padrão): a pipeline, se o repositório tiver workflows ou checks obrigatórios (de
+       *   qualquer CI); senão, só o lint do editor;
+       * - pipeline: sempre os checks e commit statuses do GitHub;
        * - editor: só o lint do editor (repositórios sem pipeline).
        * Uma documentação pode escolher com a anotação `techdocs-editor/verification`.
        * @visibility frontend

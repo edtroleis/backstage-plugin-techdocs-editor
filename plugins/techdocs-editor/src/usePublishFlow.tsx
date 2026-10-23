@@ -19,7 +19,7 @@ import {
 } from '@edtroleis/plugin-techdocs-editor-common';
 import { useChecks } from './useChecks';
 import { usePolling } from './usePolling';
-import { useEditorConfig } from './config';
+import { startTimeoutFor, useEditorConfig } from './config';
 import { useEditorTranslation } from './useEditorTranslation';
 import { fileToBase64, syncTarget, titleOf } from './editorUtils';
 import { formatVersionDate } from './HistoryDialog';
@@ -88,7 +88,7 @@ export function usePublishFlow({ loaded, doc, docsUrl, closeHistory }: Options) 
     expectedHead,
     pollMs: config.pollMs,
     idlePollMs: config.idlePollMs,
-    startTimeoutMs: config.startTimeoutMs,
+    startTimeoutMs: startTimeoutFor(config, session),
     errorText,
   });
 
