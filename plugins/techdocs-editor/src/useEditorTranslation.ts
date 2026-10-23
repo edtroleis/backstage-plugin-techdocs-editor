@@ -5,6 +5,7 @@ import {
   GitHubError,
   PageNotFoundError,
 } from '@edtroleis/plugin-techdocs-editor-common';
+import { GitHubSignInNotConfiguredError } from './connect';
 import { techdocsEditorTranslationRef } from './translation';
 import type ptBR from './translations/pt-BR';
 import { editorTextFrom, markdownViewPhrases, TextLookup } from './labels';
@@ -51,6 +52,7 @@ export function useEditorTranslation() {
   /** Mensagem de erro para a pessoa: os casos conhecidos explicados; o resto, a mensagem como veio. */
   const errorText = useCallback(
     (e: unknown): string => {
+      if (e instanceof GitHubSignInNotConfiguredError) return t('errors.githubSignInNotConfigured');
       if (e instanceof GitHubError && /SAML/i.test(e.message)) return t('errors.sso');
       if (e instanceof GitHubError && e.status === 409) return t('errors.changedMeanwhile');
       if (e instanceof PageNotFoundError) return t('errors.pageNotFound', { page: e.page || '/', dir: e.docsDir });

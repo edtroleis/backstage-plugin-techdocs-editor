@@ -72,9 +72,12 @@ GitHub decides who can write: the editor acts with the person's own GitHub token
    </Route>
    ```
 
-3. Configure GitHub sign-in in Backstage (`auth.providers.github`, an OAuth App or a GitHub App).
-   Signing in to the portal can stay with your current provider: the editor asks for GitHub (popup)
-   only when someone clicks the pencil.
+3. Configure GitHub sign-in in Backstage (`auth.providers.github`, an OAuth App or a GitHub App,
+   callback URL `<backend>/api/auth/github/handler/frame`) and install
+   `@backstage/plugin-auth-backend-module-github-provider` in the backend. Signing in to the portal
+   can stay with your current provider: the editor asks for GitHub (popup) only when someone clicks
+   the pencil. Without the provider, the editor says GitHub sign-in is not configured instead of
+   opening the popup.
 
 ## Configuration
 

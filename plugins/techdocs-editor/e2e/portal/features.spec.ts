@@ -293,6 +293,21 @@ test.describe('falhas do GitHub', () => {
     await page.goto(`/docs-editor?${new URLSearchParams({ entity: 'component:default/wiki-demo', page: 'nao/existe' })}`);
     await expect(page.getByText('Não encontrei o arquivo da página "nao/existe" em docs/')).toBeVisible({ timeout: 30_000 });
   });
+
+  test('sem o login do GitHub configurado no portal: explica o que falta, sem abrir o popup', async ({ page }) => {
+    const github = new FakeGitHub();
+    github.signInMissing = true;
+    await github.install(page);
+    await enterPortal(page);
+    const popups: string[] = [];
+    page.on('popup', popup => popups.push(popup.url()));
+    await page.goto(`/docs-editor?${new URLSearchParams({ entity: 'component:default/wiki-demo', page: 'guias/primeiros-passos' })}`);
+    await expect(page.getByText('O login do GitHub não está configurado neste portal')).toBeVisible({ timeout: 30_000 });
+    await expect(page.getByText('auth.providers.github')).toBeVisible();
+    expect(popups).toEqual([]);
+    // Nenhuma chamada ao GitHub: o editor para antes
+    expect(github.calls).toEqual([]);
+  });
 });
 
 test.describe('idiomas', () => {

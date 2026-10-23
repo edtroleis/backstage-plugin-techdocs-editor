@@ -36,14 +36,20 @@ integrations:
     - host: github.com
       token: ${GITHUB_TOKEN}
 
-# Sign in as guest, owner of the example wiki. To edit a real repository, add a GitHub OAuth App:
-# auth.providers.github.development.{clientId,clientSecret} (see plugins/techdocs-editor/README.md)
+# Portal sign-in as guest, owner of the example wiki. The editor asks for GitHub (popup) when someone
+# edits: set AUTH_GITHUB_CLIENT_ID and AUTH_GITHUB_CLIENT_SECRET from a GitHub OAuth App whose callback
+# URL is http://localhost:7007/api/auth/github/handler/frame. Without them the provider is skipped and
+# the editor says that GitHub sign-in is not configured (the portal tests simulate GitHub).
 auth:
   environment: development
   providers:
     guest:
       userEntityRef: user:default/guest
       ownershipEntityRefs: [user:default/guest, group:default/guests]
+    github:
+      development:
+        clientId: ${AUTH_GITHUB_CLIENT_ID}
+        clientSecret: ${AUTH_GITHUB_CLIENT_SECRET}
 
 # Builds the example wiki on first view; needs `mkdocs` with the techdocs-core plugin on the PATH
 # (`pip install -r requirements-docs.txt`)

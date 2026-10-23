@@ -68,6 +68,8 @@ export const enMessages = {
   errors: {
     entityNotFound: 'Document not found in the catalog: {{ref}}',
     noRepository: 'This documentation does not say which GitHub repository it lives in (github.com/project-slug).',
+    githubSignInNotConfigured:
+      'GitHub sign-in is not set up in this portal, so the editor cannot save to GitHub. Ask the portal administrators to configure auth.providers.github (see the TechDocs editor README).',
     notAnImage: '"{{name}}" is not an image',
     imageTooLarge: '"{{name}}" is larger than {{max}} MB. Use a smaller image.',
     imageUpload: 'Could not upload the image: {{error}}',

@@ -62,6 +62,8 @@ const ptBR = {
 
   'errors.entityNotFound': 'Documento não encontrado no catálogo: {{ref}}',
   'errors.noRepository': 'Esta documentação não informa o repositório do GitHub (github.com/project-slug).',
+  'errors.githubSignInNotConfigured':
+    'O login do GitHub não está configurado neste portal, então o editor não tem como salvar no GitHub. Peça a quem administra o portal para configurar auth.providers.github (veja o README do editor do TechDocs).',
   'errors.notAnImage': '"{{name}}" não é uma imagem',
   'errors.imageTooLarge': '"{{name}}" passa de {{max}} MB. Use uma imagem menor.',
   'errors.imageUpload': 'Não foi possível enviar a imagem: {{error}}',

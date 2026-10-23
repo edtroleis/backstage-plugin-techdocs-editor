@@ -35,8 +35,10 @@ Quem pode escrever é decidido pelo GitHub: o editor age com o token da própria
 yarn --cwd packages/app add @edtroleis/plugin-techdocs-editor
 ```
 
-O login do GitHub precisa estar configurado no Backstage (`auth.providers.github`); o editor pede o
-popup só quando a pessoa clica em editar.
+O login do GitHub precisa estar configurado no Backstage (`auth.providers.github`, com o callback
+`<backend>/api/auth/github/handler/frame` e o módulo `@backstage/plugin-auth-backend-module-github-provider`
+no backend); o editor pede o popup só quando a pessoa clica em editar. Sem o provedor, o editor avisa
+que o login do GitHub não está configurado, em vez de abrir o popup.
 
 ### Novo sistema de frontend
 

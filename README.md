@@ -24,9 +24,33 @@ PATH="$PWD/.venv/bin:$PATH" yarn start   # http://localhost:3000, sign in as gue
 ```
 
 The development app (`packages/app`, `packages/backend`) shows an example wiki
-(`plugins/techdocs-editor/e2e/portal/wiki-fixture`). To edit a real repository, add a GitHub OAuth
-App to `app-config.local.yaml` (`auth.providers.github.development`) and register its
-`catalog-info.yaml`.
+(`plugins/techdocs-editor/e2e/portal/wiki-fixture`).
+
+### Signing in with GitHub
+
+Without GitHub sign-in the editor opens with a message saying it is not configured (the portal tests
+simulate GitHub instead). To edit for real:
+
+1. Create a GitHub OAuth App (GitHub → Settings → Developer settings → OAuth Apps) with
+   homepage `http://localhost:3000` and callback URL `http://localhost:7007/api/auth/github/handler/frame`.
+2. Start the app with its credentials:
+
+   ```bash
+   export AUTH_GITHUB_CLIENT_ID=<client id> AUTH_GITHUB_CLIENT_SECRET=<client secret>
+   PATH="$PWD/.venv/bin:$PATH" yarn start
+   ```
+
+3. Register a documentation repository you can write to, in `app-config.local.yaml` (not committed):
+
+   ```yaml
+   catalog:
+     locations:
+       - type: url
+         target: https://github.com/<owner>/<repo>/blob/main/catalog-info.yaml
+   ```
+
+   The example wiki points to `edtroleis/docs-editor-wiki-demo`: editing it for real opens pull
+   requests there.
 
 | Command | What it does |
 |---------|--------------|

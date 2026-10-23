@@ -100,6 +100,8 @@ export class FakeGitHub {
   readonly rulesets: Array<{ id: number; name: string; rules: any[] }> = [];
   /** A pessoa já fez login do GitHub no portal (sem isto, o login opcional volta vazio). */
   signedIn = true;
+  /** O Backstage não tem o provedor de login do GitHub (auth.providers.github): o refresh responde 404. */
+  signInMissing = false;
   /**
    * A pessoa aceita dar o escopo `workflow` quando o editor pede (no GitHub de verdade, pela tela de
    * consentimento). Sem ele, o GitHub recusa criar ou alterar arquivos em .github/workflows/.
@@ -720,6 +722,12 @@ export class FakeGitHub {
       const scope = new URL(route.request().url()).searchParams.get('scope') ?? '';
       this.requestedScopes.push(scope);
       const workflow = scope.split(' ').includes('workflow');
+      if (this.signInMissing) {
+        return route.fulfill({
+          status: 404,
+          json: { error: { name: 'NotFoundError', message: "No auth provider registered for 'github'" } },
+        });
+      }
       if (!this.signedIn || (workflow && !this.grantsWorkflowScope)) {
         return route.fulfill({ status: 401, json: { error: { name: 'AuthenticationError', message: 'sem sessão' } } });
       }
