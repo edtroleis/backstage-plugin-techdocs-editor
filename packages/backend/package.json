@@ -30,7 +30,7 @@
     "@backstage/plugin-techdocs-backend": "^2.4.0",
     "@edtroleis/plugin-scaffolder-backend-module-techdocs-editor": "workspace:^",
     "app": "link:../app",
-    "better-sqlite3": "^12.0.0",
+    "better-sqlite3": "^13.0.3",
     "node-gyp": "^12.4.0"
   },
   "devDependencies": {
