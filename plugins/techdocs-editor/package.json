@@ -1,6 +1,6 @@
 {
   "name": "@edtroleis/plugin-techdocs-editor",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Visual editor for TechDocs pages: drafts, checks and publishing through GitHub pull requests",
   "license": "Apache-2.0",
   "author": "Edtroleis",
