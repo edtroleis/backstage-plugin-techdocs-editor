@@ -4206,7 +4206,7 @@ __metadata:
     "@backstage/plugin-catalog-common": "npm:^1.2.1"
     "@backstage/plugin-permission-common": "npm:^0.9.12"
     esbuild: "npm:0.28.2"
-    markdownlint: "npm:0.42.0"
+    markdownlint: "npm:0.42.1"
     yaml: "npm:2.9.1"
   languageName: unknown
   linkType: soft
@@ -4241,9 +4241,9 @@ __metadata:
     "@material-ui/core": "npm:^4.12.2"
     "@material-ui/icons": "npm:^4.9.1"
     "@material-ui/lab": "npm:4.0.0-alpha.61"
-    "@milkdown/crepe": "npm:7.22.3"
-    "@milkdown/kit": "npm:7.22.3"
-    "@playwright/test": "npm:^1.32.3"
+    "@milkdown/crepe": "npm:7.23.0"
+    "@milkdown/kit": "npm:7.23.0"
+    "@playwright/test": "npm:^1.65.0"
     "@testing-library/dom": "npm:^10.4.2"
     "@testing-library/react": "npm:^16.3.3"
     esbuild: "npm:0.28.2"
@@ -6213,21 +6213,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@milkdown/components@npm:7.22.3":
-  version: 7.22.3
-  resolution: "@milkdown/components@npm:7.22.3"
+"@milkdown/components@npm:7.23.0":
+  version: 7.23.0
+  resolution: "@milkdown/components@npm:7.23.0"
   dependencies:
     "@floating-ui/dom": "npm:^1.5.1"
-    "@milkdown/core": "npm:7.22.3"
-    "@milkdown/ctx": "npm:7.22.3"
-    "@milkdown/exception": "npm:7.22.3"
-    "@milkdown/plugin-diff": "npm:7.22.3"
-    "@milkdown/plugin-tooltip": "npm:7.22.3"
-    "@milkdown/preset-commonmark": "npm:7.22.3"
-    "@milkdown/preset-gfm": "npm:7.22.3"
-    "@milkdown/prose": "npm:7.22.3"
-    "@milkdown/transformer": "npm:7.22.3"
-    "@milkdown/utils": "npm:7.22.3"
+    "@milkdown/core": "npm:7.23.0"
+    "@milkdown/ctx": "npm:7.23.0"
+    "@milkdown/exception": "npm:7.23.0"
+    "@milkdown/plugin-diff": "npm:7.23.0"
+    "@milkdown/plugin-tooltip": "npm:7.23.0"
+    "@milkdown/preset-commonmark": "npm:7.23.0"
+    "@milkdown/preset-gfm": "npm:7.23.0"
+    "@milkdown/prose": "npm:7.23.0"
+    "@milkdown/transformer": "npm:7.23.0"
+    "@milkdown/utils": "npm:7.23.0"
     "@types/lodash-es": "npm:^4.17.12"
     clsx: "npm:^2.0.0"
     dompurify: "npm:^3.2.5"
@@ -6239,28 +6239,28 @@ __metadata:
     "@codemirror/language": ^6
     "@codemirror/state": ^6
     "@codemirror/view": ^6
-  checksum: 10c0/581fe9843d10a72ec4069decd910fc4a4a15272e83007375d61e3e5f807248ca3da21b63d6cd5fe86725c697b1d75fe8129ea93f515f850334bb6b89df245e4d
+  checksum: 10c0/73888618fb9ee022001fd1b991c5c976c5949988729a8a9766d62704a04ed5c44b189f1fe12d429e287363257da8e549f74c08b54d855c210ba4d43c9f5aab78
   languageName: node
   linkType: hard
 
-"@milkdown/core@npm:7.22.3":
-  version: 7.22.3
-  resolution: "@milkdown/core@npm:7.22.3"
+"@milkdown/core@npm:7.23.0":
+  version: 7.23.0
+  resolution: "@milkdown/core@npm:7.23.0"
   dependencies:
-    "@milkdown/ctx": "npm:7.22.3"
-    "@milkdown/exception": "npm:7.22.3"
-    "@milkdown/prose": "npm:7.22.3"
-    "@milkdown/transformer": "npm:7.22.3"
+    "@milkdown/ctx": "npm:7.23.0"
+    "@milkdown/exception": "npm:7.23.0"
+    "@milkdown/prose": "npm:7.23.0"
+    "@milkdown/transformer": "npm:7.23.0"
     remark-parse: "npm:^11.0.0"
     remark-stringify: "npm:^11.0.0"
     unified: "npm:^11.0.3"
-  checksum: 10c0/3302738527e04dbf96f599612bad767226d3d52659b017b7d8dab2c274a2d9ec64ef9ef9af220a14e38448cdb5687e6699e6e75c82afad1a667056ff53229a85
+  checksum: 10c0/7927bfd77ab7d02e41f72e7216ba3b4ec2a540bfdb6d363a952774b01ef61352ba222fc4a30f81b404785a58acf928c13c88b7c6d6f2639b1555beb3346afac8
   languageName: node
   linkType: hard
 
-"@milkdown/crepe@npm:7.22.3":
-  version: 7.22.3
-  resolution: "@milkdown/crepe@npm:7.22.3"
+"@milkdown/crepe@npm:7.23.0":
+  version: 7.23.0
+  resolution: "@milkdown/crepe@npm:7.23.0"
   dependencies:
     "@codemirror/commands": "npm:^6.2.4"
     "@codemirror/language": "npm:^6.10.1"
@@ -6268,7 +6268,7 @@ __metadata:
     "@codemirror/state": "npm:^6.4.1"
     "@codemirror/theme-one-dark": "npm:^6.1.2"
     "@codemirror/view": "npm:^6.16.0"
-    "@milkdown/kit": "npm:7.22.3"
+    "@milkdown/kit": "npm:7.23.0"
     "@types/lodash-es": "npm:^4.17.12"
     clsx: "npm:^2.0.0"
     codemirror: "npm:^6.0.1"
@@ -6279,247 +6279,247 @@ __metadata:
     remark-math: "npm:^6.0.0"
     unist-util-visit: "npm:^5.0.0"
     vue: "npm:^3.5.20"
-  checksum: 10c0/815e5442c51cd995a491d4edb7796bef752f55881be85e46bcdfcfe622062041053953dbf2eeb8d6f52774d617521a96a2bfd4956210acd32920ec21b452f136
+  checksum: 10c0/86e7a446dd803ff409105da563ea4a063fe071af930ff9c5f531e6f324e0ce757eb238320dd42c8d573181122832f9a33bb434d1a0d9072cde656e032591111a
   languageName: node
   linkType: hard
 
-"@milkdown/ctx@npm:7.22.3":
-  version: 7.22.3
-  resolution: "@milkdown/ctx@npm:7.22.3"
+"@milkdown/ctx@npm:7.23.0":
+  version: 7.23.0
+  resolution: "@milkdown/ctx@npm:7.23.0"
   dependencies:
-    "@milkdown/exception": "npm:7.22.3"
-  checksum: 10c0/51159936fca3d910e29881fda55c4a36a5b3ab9e584715e5300fa02a7e011c0f9b710cb30527c7bdef57f6272f37919fa7c3c8bc511688d093801f079beae4ee
+    "@milkdown/exception": "npm:7.23.0"
+  checksum: 10c0/22b6afb1f561a1e64e66cb2d1dca2fabcc85c67c89dadc9056d20d7cc998a92e7da2af41af36c69c13c66bd07cee8d73683c98a5cab7dfb2a4e506cad6edffb5
   languageName: node
   linkType: hard
 
-"@milkdown/exception@npm:7.22.3":
-  version: 7.22.3
-  resolution: "@milkdown/exception@npm:7.22.3"
-  checksum: 10c0/1dbdd7921f9c7ae445c98e3f9cc6c28ef56945b1e1d5e4266305078efd78dc088aef1cc47ced9ff3ffbeb71e843ead8d3a531d61209d17d577a90da0c927259b
+"@milkdown/exception@npm:7.23.0":
+  version: 7.23.0
+  resolution: "@milkdown/exception@npm:7.23.0"
+  checksum: 10c0/028c427d76ab1db8ba4d52271dd165c1626ff3adc6f500b08d83bd334447d4738d31b58dd9e2ab508cf755dc480cd4bb39ca4c044982014081f90177c89956d4
   languageName: node
   linkType: hard
 
-"@milkdown/kit@npm:7.22.3":
-  version: 7.22.3
-  resolution: "@milkdown/kit@npm:7.22.3"
+"@milkdown/kit@npm:7.23.0":
+  version: 7.23.0
+  resolution: "@milkdown/kit@npm:7.23.0"
   dependencies:
-    "@milkdown/components": "npm:7.22.3"
-    "@milkdown/core": "npm:7.22.3"
-    "@milkdown/ctx": "npm:7.22.3"
-    "@milkdown/exception": "npm:7.22.3"
-    "@milkdown/plugin-block": "npm:7.22.3"
-    "@milkdown/plugin-clipboard": "npm:7.22.3"
-    "@milkdown/plugin-cursor": "npm:7.22.3"
-    "@milkdown/plugin-diff": "npm:7.22.3"
-    "@milkdown/plugin-history": "npm:7.22.3"
-    "@milkdown/plugin-indent": "npm:7.22.3"
-    "@milkdown/plugin-listener": "npm:7.22.3"
-    "@milkdown/plugin-slash": "npm:7.22.3"
-    "@milkdown/plugin-streaming": "npm:7.22.3"
-    "@milkdown/plugin-tooltip": "npm:7.22.3"
-    "@milkdown/plugin-trailing": "npm:7.22.3"
-    "@milkdown/plugin-upload": "npm:7.22.3"
-    "@milkdown/preset-commonmark": "npm:7.22.3"
-    "@milkdown/preset-gfm": "npm:7.22.3"
-    "@milkdown/prose": "npm:7.22.3"
-    "@milkdown/transformer": "npm:7.22.3"
-    "@milkdown/utils": "npm:7.22.3"
-  checksum: 10c0/076ce33a66140dd88011bbedf7db31c2de570f7fad6fccec94bc78e71a19aaaa4b028aa7dd6122dd6d0a39a5a61970161105d60fd826ba0b5e9ce85762caeec4
+    "@milkdown/components": "npm:7.23.0"
+    "@milkdown/core": "npm:7.23.0"
+    "@milkdown/ctx": "npm:7.23.0"
+    "@milkdown/exception": "npm:7.23.0"
+    "@milkdown/plugin-block": "npm:7.23.0"
+    "@milkdown/plugin-clipboard": "npm:7.23.0"
+    "@milkdown/plugin-cursor": "npm:7.23.0"
+    "@milkdown/plugin-diff": "npm:7.23.0"
+    "@milkdown/plugin-history": "npm:7.23.0"
+    "@milkdown/plugin-indent": "npm:7.23.0"
+    "@milkdown/plugin-listener": "npm:7.23.0"
+    "@milkdown/plugin-slash": "npm:7.23.0"
+    "@milkdown/plugin-streaming": "npm:7.23.0"
+    "@milkdown/plugin-tooltip": "npm:7.23.0"
+    "@milkdown/plugin-trailing": "npm:7.23.0"
+    "@milkdown/plugin-upload": "npm:7.23.0"
+    "@milkdown/preset-commonmark": "npm:7.23.0"
+    "@milkdown/preset-gfm": "npm:7.23.0"
+    "@milkdown/prose": "npm:7.23.0"
+    "@milkdown/transformer": "npm:7.23.0"
+    "@milkdown/utils": "npm:7.23.0"
+  checksum: 10c0/e5e74f8bba23c14883b1158fec760e9f97177f549854207a2123335a70979e666ec9db280c7073b94c2610b9298bc4290d272622b1c2d03e6726a10da3014d37
   languageName: node
   linkType: hard
 
-"@milkdown/plugin-block@npm:7.22.3":
-  version: 7.22.3
-  resolution: "@milkdown/plugin-block@npm:7.22.3"
+"@milkdown/plugin-block@npm:7.23.0":
+  version: 7.23.0
+  resolution: "@milkdown/plugin-block@npm:7.23.0"
   dependencies:
     "@floating-ui/dom": "npm:^1.5.1"
-    "@milkdown/core": "npm:7.22.3"
-    "@milkdown/ctx": "npm:7.22.3"
-    "@milkdown/prose": "npm:7.22.3"
-    "@milkdown/utils": "npm:7.22.3"
+    "@milkdown/core": "npm:7.23.0"
+    "@milkdown/ctx": "npm:7.23.0"
+    "@milkdown/prose": "npm:7.23.0"
+    "@milkdown/utils": "npm:7.23.0"
     "@types/lodash-es": "npm:^4.17.12"
     lodash-es: "npm:^4.17.21"
-  checksum: 10c0/0ee09befbc35e064c1f8d5626099a4060b2dbfb63dd108c1957370b99826f111e505f3e7648068c3ec18170cbd2e9c70a2319dc5931fe161eaf7d1c2ea6bf94f
+  checksum: 10c0/a027d7be7f6c1d90eb64e3e750748a74ba6a075ddb234700da33bc8eb5a2e43b289cb54540c6e5f95e30453e11a5277dc480da0520cba0be69447431b6f6a4f1
   languageName: node
   linkType: hard
 
-"@milkdown/plugin-clipboard@npm:7.22.3":
-  version: 7.22.3
-  resolution: "@milkdown/plugin-clipboard@npm:7.22.3"
+"@milkdown/plugin-clipboard@npm:7.23.0":
+  version: 7.23.0
+  resolution: "@milkdown/plugin-clipboard@npm:7.23.0"
   dependencies:
-    "@milkdown/core": "npm:7.22.3"
-    "@milkdown/ctx": "npm:7.22.3"
-    "@milkdown/prose": "npm:7.22.3"
-    "@milkdown/utils": "npm:7.22.3"
-  checksum: 10c0/5671d540ae80cb3b44fdb330b0bf9ed858d96cebbf48b5450d6bcaea2784e456f1a0357bd94a125302eaceed710942dc918d2a26ab68293b6f6feafffe4fbff0
+    "@milkdown/core": "npm:7.23.0"
+    "@milkdown/ctx": "npm:7.23.0"
+    "@milkdown/prose": "npm:7.23.0"
+    "@milkdown/utils": "npm:7.23.0"
+  checksum: 10c0/0b7f740c610a3274dc40ada9bc8c75f0f52089bcecd01fde119ea9664441753156bd3ffb91bace621a3980a193193dd21caf380de095d78bf46227966426108f
   languageName: node
   linkType: hard
 
-"@milkdown/plugin-cursor@npm:7.22.3":
-  version: 7.22.3
-  resolution: "@milkdown/plugin-cursor@npm:7.22.3"
+"@milkdown/plugin-cursor@npm:7.23.0":
+  version: 7.23.0
+  resolution: "@milkdown/plugin-cursor@npm:7.23.0"
   dependencies:
-    "@milkdown/ctx": "npm:7.22.3"
-    "@milkdown/prose": "npm:7.22.3"
-    "@milkdown/utils": "npm:7.22.3"
+    "@milkdown/ctx": "npm:7.23.0"
+    "@milkdown/prose": "npm:7.23.0"
+    "@milkdown/utils": "npm:7.23.0"
     prosemirror-drop-indicator: "npm:^0.1.0"
-  checksum: 10c0/08cf167b21ca2b15142f4299a35e168725fe573b4ed9a097730b32596f2c08a64d5781f96eb9319bdcf280776e84527a7b3046d66ec71ef756a8888c8fcb9493
+  checksum: 10c0/df72341572cc12e1fb8e43241ea93b3c2fdc229a7d0b76069e883eead8dec82c86e5dcbd03ca2edb4998c129edb17ec5c1b4d738eb640194653f927dca19ec8f
   languageName: node
   linkType: hard
 
-"@milkdown/plugin-diff@npm:7.22.3":
-  version: 7.22.3
-  resolution: "@milkdown/plugin-diff@npm:7.22.3"
+"@milkdown/plugin-diff@npm:7.23.0":
+  version: 7.23.0
+  resolution: "@milkdown/plugin-diff@npm:7.23.0"
   dependencies:
-    "@milkdown/core": "npm:7.22.3"
-    "@milkdown/ctx": "npm:7.22.3"
-    "@milkdown/prose": "npm:7.22.3"
-    "@milkdown/transformer": "npm:7.22.3"
-    "@milkdown/utils": "npm:7.22.3"
-  checksum: 10c0/3d21fd2970b76acb95aa5c03d5333c97f99d42150f66992a9b3cf8a541c87cc9200c51fe87108e01bd909e747b9ddad1c313e055fd4eec789a6a43f13bef001b
+    "@milkdown/core": "npm:7.23.0"
+    "@milkdown/ctx": "npm:7.23.0"
+    "@milkdown/prose": "npm:7.23.0"
+    "@milkdown/transformer": "npm:7.23.0"
+    "@milkdown/utils": "npm:7.23.0"
+  checksum: 10c0/f42be83c5cc6606ddfea80401831f3a0aa93a4e37fc361623ee12aa5d055efccc4368c3a560b76d2287fc66565d747b6e10321449088440e765776967368b998
   languageName: node
   linkType: hard
 
-"@milkdown/plugin-history@npm:7.22.3":
-  version: 7.22.3
-  resolution: "@milkdown/plugin-history@npm:7.22.3"
+"@milkdown/plugin-history@npm:7.23.0":
+  version: 7.23.0
+  resolution: "@milkdown/plugin-history@npm:7.23.0"
   dependencies:
-    "@milkdown/core": "npm:7.22.3"
-    "@milkdown/ctx": "npm:7.22.3"
-    "@milkdown/prose": "npm:7.22.3"
-    "@milkdown/utils": "npm:7.22.3"
-  checksum: 10c0/42ab3d2764f3ec1e996f249b16ebf9183b1a7b66a2ecc4929d5d74068b2b9b02397d95ba6270417e165bc6b14934cb32aefed83e91699ad89e14ca9838f66402
+    "@milkdown/core": "npm:7.23.0"
+    "@milkdown/ctx": "npm:7.23.0"
+    "@milkdown/prose": "npm:7.23.0"
+    "@milkdown/utils": "npm:7.23.0"
+  checksum: 10c0/fb214567530535fb317dc8595e825ef87c4e860c0aa6dd2c7ab388cb0ed2a04ee0935f181f64abc24243d900a746f24b302f7daf93fa8b822e113417f67100a9
   languageName: node
   linkType: hard
 
-"@milkdown/plugin-indent@npm:7.22.3":
-  version: 7.22.3
-  resolution: "@milkdown/plugin-indent@npm:7.22.3"
+"@milkdown/plugin-indent@npm:7.23.0":
+  version: 7.23.0
+  resolution: "@milkdown/plugin-indent@npm:7.23.0"
   dependencies:
-    "@milkdown/ctx": "npm:7.22.3"
-    "@milkdown/prose": "npm:7.22.3"
-    "@milkdown/utils": "npm:7.22.3"
-  checksum: 10c0/bbca897a4bcb60a4ae02a77c19a1615d578a12f5c4a93aa1f35e327120910aff64deec5b83d3e15ac3fcf9238521708ae899eae988a8890015bd9c613ea8ea27
+    "@milkdown/ctx": "npm:7.23.0"
+    "@milkdown/prose": "npm:7.23.0"
+    "@milkdown/utils": "npm:7.23.0"
+  checksum: 10c0/fd27ec949ef25dba3056ad9a1502887f8bcab743b131dde667ce6de14866420ff49888ae836bd49d13d6d8062efcc05214295de8d23121971321ad096ada6a1b
   languageName: node
   linkType: hard
 
-"@milkdown/plugin-listener@npm:7.22.3":
-  version: 7.22.3
-  resolution: "@milkdown/plugin-listener@npm:7.22.3"
+"@milkdown/plugin-listener@npm:7.23.0":
+  version: 7.23.0
+  resolution: "@milkdown/plugin-listener@npm:7.23.0"
   dependencies:
-    "@milkdown/core": "npm:7.22.3"
-    "@milkdown/ctx": "npm:7.22.3"
-    "@milkdown/prose": "npm:7.22.3"
+    "@milkdown/core": "npm:7.23.0"
+    "@milkdown/ctx": "npm:7.23.0"
+    "@milkdown/prose": "npm:7.23.0"
     "@types/lodash-es": "npm:^4.17.12"
     lodash-es: "npm:^4.17.21"
-  checksum: 10c0/2dcb5be40d4627caab504ef79b193d59f5a9de8ddd005af06a865860dbdb5cbe0ef86b5bfe48bd02f45556599bdca116181e4e4aac28d6d6d396e2f340e12450
+  checksum: 10c0/351cf5a442bb4da2d0138be914283aec45248e15b0292e70954cac8e1a17ca8b4ccb0f528ea0e3d9191c0942b5937b2573ee2198a04e04e11f7b1170319bee03
   languageName: node
   linkType: hard
 
-"@milkdown/plugin-slash@npm:7.22.3":
-  version: 7.22.3
-  resolution: "@milkdown/plugin-slash@npm:7.22.3"
+"@milkdown/plugin-slash@npm:7.23.0":
+  version: 7.23.0
+  resolution: "@milkdown/plugin-slash@npm:7.23.0"
   dependencies:
     "@floating-ui/dom": "npm:^1.5.1"
-    "@milkdown/ctx": "npm:7.22.3"
-    "@milkdown/prose": "npm:7.22.3"
-    "@milkdown/utils": "npm:7.22.3"
+    "@milkdown/ctx": "npm:7.23.0"
+    "@milkdown/prose": "npm:7.23.0"
+    "@milkdown/utils": "npm:7.23.0"
     "@types/lodash-es": "npm:^4.17.12"
     lodash-es: "npm:^4.17.21"
-  checksum: 10c0/009d645c46d4279d8af29d06e15c3ec449f8eeb63455f0046b6a4734ea41d8e05ccdc84b7c2eafdcec0c02819daee9b5ef5d8d2335e1d3f7ec3da8cbd51aa2c7
+  checksum: 10c0/2022e602beed0e2c0c47226b19b6e971e82381d0e844b3f64e4369f0864bed6313ee43ae0ad658896b5be62935a6bac0e247d1c8bfc3b7dbafa5fd8a44add58b
   languageName: node
   linkType: hard
 
-"@milkdown/plugin-streaming@npm:7.22.3":
-  version: 7.22.3
-  resolution: "@milkdown/plugin-streaming@npm:7.22.3"
+"@milkdown/plugin-streaming@npm:7.23.0":
+  version: 7.23.0
+  resolution: "@milkdown/plugin-streaming@npm:7.23.0"
   dependencies:
-    "@milkdown/core": "npm:7.22.3"
-    "@milkdown/ctx": "npm:7.22.3"
-    "@milkdown/plugin-diff": "npm:7.22.3"
-    "@milkdown/prose": "npm:7.22.3"
-    "@milkdown/utils": "npm:7.22.3"
-  checksum: 10c0/416023f70162f963524f7f4eccd346a36416b0a1d751e64ea00e9c6686af0ac18b44c94517ebcff423fdbb84e2484c9062bdf4e2986024bd6024901cbd17fbcc
+    "@milkdown/core": "npm:7.23.0"
+    "@milkdown/ctx": "npm:7.23.0"
+    "@milkdown/plugin-diff": "npm:7.23.0"
+    "@milkdown/prose": "npm:7.23.0"
+    "@milkdown/utils": "npm:7.23.0"
+  checksum: 10c0/1b36316c3a7e660391d14ec6e9a11941a005bdf8ae45011819ec7dd329c0d13374096d799f1112c5e8f98e63b5c59a5c74e2eadcef4beac7b1e201f45f8545ab
   languageName: node
   linkType: hard
 
-"@milkdown/plugin-tooltip@npm:7.22.3":
-  version: 7.22.3
-  resolution: "@milkdown/plugin-tooltip@npm:7.22.3"
+"@milkdown/plugin-tooltip@npm:7.23.0":
+  version: 7.23.0
+  resolution: "@milkdown/plugin-tooltip@npm:7.23.0"
   dependencies:
     "@floating-ui/dom": "npm:^1.5.1"
-    "@milkdown/ctx": "npm:7.22.3"
-    "@milkdown/prose": "npm:7.22.3"
-    "@milkdown/utils": "npm:7.22.3"
+    "@milkdown/ctx": "npm:7.23.0"
+    "@milkdown/prose": "npm:7.23.0"
+    "@milkdown/utils": "npm:7.23.0"
     "@types/lodash-es": "npm:^4.17.12"
     lodash-es: "npm:^4.17.21"
-  checksum: 10c0/8b28265a184a88da78ec46a34a7998dda6bf5c07060313e6ad5090de9d35ea330dfdfb1fa336243187522413d4a9fe249e340aa959cfcbae0788f63d859440e5
+  checksum: 10c0/200d920a0f75530d5116e92475ff6884efcfefb4bc4e8880eb67a33f6853594aef68536d4e79689059aab98d78c81e28b8c053a8988e0e43effbf04460200971
   languageName: node
   linkType: hard
 
-"@milkdown/plugin-trailing@npm:7.22.3":
-  version: 7.22.3
-  resolution: "@milkdown/plugin-trailing@npm:7.22.3"
+"@milkdown/plugin-trailing@npm:7.23.0":
+  version: 7.23.0
+  resolution: "@milkdown/plugin-trailing@npm:7.23.0"
   dependencies:
-    "@milkdown/ctx": "npm:7.22.3"
-    "@milkdown/prose": "npm:7.22.3"
-    "@milkdown/utils": "npm:7.22.3"
-  checksum: 10c0/daae269b4618aa495b0685a09773f1fb9e3fa2d0244419119d5e254d5805dcf2da4da78b4142bdf312c8793b6a9b198befbb77e88056ed7071564a50e6e08c64
+    "@milkdown/ctx": "npm:7.23.0"
+    "@milkdown/prose": "npm:7.23.0"
+    "@milkdown/utils": "npm:7.23.0"
+  checksum: 10c0/c3b92f2553e86cdcba765b8b3717b703caf30bcefa57929fd282a40ecd6a385c015c6654bc5fcac1d11a13cf88a0867e10df24ba98276f34166e12c4808d8680
   languageName: node
   linkType: hard
 
-"@milkdown/plugin-upload@npm:7.22.3":
-  version: 7.22.3
-  resolution: "@milkdown/plugin-upload@npm:7.22.3"
+"@milkdown/plugin-upload@npm:7.23.0":
+  version: 7.23.0
+  resolution: "@milkdown/plugin-upload@npm:7.23.0"
   dependencies:
-    "@milkdown/core": "npm:7.22.3"
-    "@milkdown/ctx": "npm:7.22.3"
-    "@milkdown/exception": "npm:7.22.3"
-    "@milkdown/prose": "npm:7.22.3"
-    "@milkdown/utils": "npm:7.22.3"
-  checksum: 10c0/07600b1e94c7092401c004f2949785f27b741ce08bd7c4a9d28e8d3d24ddf1398cf30c586c3231c7c55d29a69c12dc233ad113785b42b4259d5454019f6f3a6e
+    "@milkdown/core": "npm:7.23.0"
+    "@milkdown/ctx": "npm:7.23.0"
+    "@milkdown/exception": "npm:7.23.0"
+    "@milkdown/prose": "npm:7.23.0"
+    "@milkdown/utils": "npm:7.23.0"
+  checksum: 10c0/3bb2afe962c6877b850188c1ea6a5e7791ef85b2a1b6b2a502e7e31b64f295a75e84de73433e28d000e96b70d6f1ee2480560fac0579ff99ce9f8938b5e96fbe
   languageName: node
   linkType: hard
 
-"@milkdown/preset-commonmark@npm:7.22.3":
-  version: 7.22.3
-  resolution: "@milkdown/preset-commonmark@npm:7.22.3"
+"@milkdown/preset-commonmark@npm:7.23.0":
+  version: 7.23.0
+  resolution: "@milkdown/preset-commonmark@npm:7.23.0"
   dependencies:
-    "@milkdown/core": "npm:7.22.3"
-    "@milkdown/ctx": "npm:7.22.3"
-    "@milkdown/exception": "npm:7.22.3"
-    "@milkdown/prose": "npm:7.22.3"
-    "@milkdown/transformer": "npm:7.22.3"
-    "@milkdown/utils": "npm:7.22.3"
+    "@milkdown/core": "npm:7.23.0"
+    "@milkdown/ctx": "npm:7.23.0"
+    "@milkdown/exception": "npm:7.23.0"
+    "@milkdown/prose": "npm:7.23.0"
+    "@milkdown/transformer": "npm:7.23.0"
+    "@milkdown/utils": "npm:7.23.0"
     remark-inline-links: "npm:^7.0.0"
     unist-util-visit: "npm:^5.0.0"
     unist-util-visit-parents: "npm:^6.0.1"
-  checksum: 10c0/36686b526c61d4bd5ce352b96d313fbf515680ecbabe094ed0b07c30376f9f352687e0f7979ce1c7bea2033e041da5c74b07076bfd914f8db450966e53abdce6
+  checksum: 10c0/c31f0706a3a82e04a1c6fefcc1bc1be5a00d95d16f5d5d562ec4e9d95f75ce05a1a2d9e2b1c35155509e453bfdb0fc2adc7f50a2e349ec4f6c657f3e6ead169b
   languageName: node
   linkType: hard
 
-"@milkdown/preset-gfm@npm:7.22.3":
-  version: 7.22.3
-  resolution: "@milkdown/preset-gfm@npm:7.22.3"
+"@milkdown/preset-gfm@npm:7.23.0":
+  version: 7.23.0
+  resolution: "@milkdown/preset-gfm@npm:7.23.0"
   dependencies:
-    "@milkdown/core": "npm:7.22.3"
-    "@milkdown/ctx": "npm:7.22.3"
-    "@milkdown/exception": "npm:7.22.3"
-    "@milkdown/preset-commonmark": "npm:7.22.3"
-    "@milkdown/prose": "npm:7.22.3"
-    "@milkdown/transformer": "npm:7.22.3"
-    "@milkdown/utils": "npm:7.22.3"
+    "@milkdown/core": "npm:7.23.0"
+    "@milkdown/ctx": "npm:7.23.0"
+    "@milkdown/exception": "npm:7.23.0"
+    "@milkdown/preset-commonmark": "npm:7.23.0"
+    "@milkdown/prose": "npm:7.23.0"
+    "@milkdown/transformer": "npm:7.23.0"
+    "@milkdown/utils": "npm:7.23.0"
     prosemirror-safari-ime-span: "npm:^1.0.1"
     remark-gfm: "npm:^4.0.1"
-  checksum: 10c0/229a685b07361459230adc9441e0abc04fd00cfdb15d96cabacff4db7720464112fa4bb6d9bf14a73c4f8b59c5b3c5e8bce038cb2f91ed1890f6f34bd98dfbdb
+  checksum: 10c0/15fa82fb15747f0c72419014da4d0455011351122278420dee4596e9e534ce2e6ba6e24468cd56bfbacec4ddeb0f0454cd2a2448cb2da012455be09472670e61
   languageName: node
   linkType: hard
 
-"@milkdown/prose@npm:7.22.3":
-  version: 7.22.3
-  resolution: "@milkdown/prose@npm:7.22.3"
+"@milkdown/prose@npm:7.23.0":
+  version: 7.23.0
+  resolution: "@milkdown/prose@npm:7.23.0"
   dependencies:
-    "@milkdown/exception": "npm:7.22.3"
+    "@milkdown/exception": "npm:7.23.0"
     prosemirror-changeset: "npm:^2.3.1"
     prosemirror-commands: "npm:^1.7.1"
     prosemirror-dropcursor: "npm:^1.8.2"
@@ -6533,33 +6533,33 @@ __metadata:
     prosemirror-tables: "npm:^1.8.1"
     prosemirror-transform: "npm:^1.10.5"
     prosemirror-view: "npm:^1.41.3"
-  checksum: 10c0/d8edc68f0d02defe255e08464120fdbdcd1276f0bf6f0e01927661e0d5e4c3ee6ffa4c2087a1d3dbbc565b87484b0f71ff33665f513aec7cefe3f21b144a9ca3
+  checksum: 10c0/a1a54cb6a5cbdcd7076a21db8b1ce26b025e799683be246643530f12503c401b30fdc8767ae7aee807afb912b17aada82c70ff8a677d1c866bb084380d5ca2d7
   languageName: node
   linkType: hard
 
-"@milkdown/transformer@npm:7.22.3":
-  version: 7.22.3
-  resolution: "@milkdown/transformer@npm:7.22.3"
+"@milkdown/transformer@npm:7.23.0":
+  version: 7.23.0
+  resolution: "@milkdown/transformer@npm:7.23.0"
   dependencies:
-    "@milkdown/exception": "npm:7.22.3"
-    "@milkdown/prose": "npm:7.22.3"
+    "@milkdown/exception": "npm:7.23.0"
+    "@milkdown/prose": "npm:7.23.0"
     remark: "npm:^15.0.1"
     unified: "npm:^11.0.3"
-  checksum: 10c0/eecc8de88dbe8f896e1b7862902b4c92edd2ca478fbb04bb9edfc7dbcf3adf703f1f5b3c4c7b763b4dd8ceccfbc99e6f9bcf587fa798dda4d88347f7392cf282
+  checksum: 10c0/eea0299d7e056f8e2ed1344586b087f2079511ea7a95875e675e47adb8602939bf362cf9586abd092b9cbc1106e2ed40406b7ab8241b573f6fc503a988622e34
   languageName: node
   linkType: hard
 
-"@milkdown/utils@npm:7.22.3":
-  version: 7.22.3
-  resolution: "@milkdown/utils@npm:7.22.3"
+"@milkdown/utils@npm:7.23.0":
+  version: 7.23.0
+  resolution: "@milkdown/utils@npm:7.23.0"
   dependencies:
-    "@milkdown/core": "npm:7.22.3"
-    "@milkdown/ctx": "npm:7.22.3"
-    "@milkdown/exception": "npm:7.22.3"
-    "@milkdown/prose": "npm:7.22.3"
-    "@milkdown/transformer": "npm:7.22.3"
+    "@milkdown/core": "npm:7.23.0"
+    "@milkdown/ctx": "npm:7.23.0"
+    "@milkdown/exception": "npm:7.23.0"
+    "@milkdown/prose": "npm:7.23.0"
+    "@milkdown/transformer": "npm:7.23.0"
     nanoid: "npm:^6.0.0"
-  checksum: 10c0/3d6823cb26fb58fb9fafef61f86e090f7526a2d8d3c79e9cb9df6bd07b7bd28bc65968e31cf4295bd535b9b8baa5305e3a2197a82575d370a63fa63b96e7d5b8
+  checksum: 10c0/10bf9b267685b1c2d6a45bc1858620d380705a45a267a4e7f0ed2bd1be2c3ed67a4ee7778d08bcf8036ee4f5915e50b15af3c775fd454f1ae29c6984db37b85d
   languageName: node
   linkType: hard
 
@@ -7641,143 +7641,143 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-android-arm-eabi@npm:0.154.0":
-  version: 0.154.0
-  resolution: "@oxc-parser/binding-android-arm-eabi@npm:0.154.0"
+"@oxc-parser/binding-android-arm-eabi@npm:0.156.0":
+  version: 0.156.0
+  resolution: "@oxc-parser/binding-android-arm-eabi@npm:0.156.0"
   conditions: os=android & cpu=arm
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-android-arm64@npm:0.154.0":
-  version: 0.154.0
-  resolution: "@oxc-parser/binding-android-arm64@npm:0.154.0"
+"@oxc-parser/binding-android-arm64@npm:0.156.0":
+  version: 0.156.0
+  resolution: "@oxc-parser/binding-android-arm64@npm:0.156.0"
   conditions: os=android & cpu=arm64
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-darwin-arm64@npm:0.154.0":
-  version: 0.154.0
-  resolution: "@oxc-parser/binding-darwin-arm64@npm:0.154.0"
+"@oxc-parser/binding-darwin-arm64@npm:0.156.0":
+  version: 0.156.0
+  resolution: "@oxc-parser/binding-darwin-arm64@npm:0.156.0"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-darwin-x64@npm:0.154.0":
-  version: 0.154.0
-  resolution: "@oxc-parser/binding-darwin-x64@npm:0.154.0"
+"@oxc-parser/binding-darwin-x64@npm:0.156.0":
+  version: 0.156.0
+  resolution: "@oxc-parser/binding-darwin-x64@npm:0.156.0"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-freebsd-x64@npm:0.154.0":
-  version: 0.154.0
-  resolution: "@oxc-parser/binding-freebsd-x64@npm:0.154.0"
+"@oxc-parser/binding-freebsd-x64@npm:0.156.0":
+  version: 0.156.0
+  resolution: "@oxc-parser/binding-freebsd-x64@npm:0.156.0"
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-linux-arm-gnueabihf@npm:0.154.0":
-  version: 0.154.0
-  resolution: "@oxc-parser/binding-linux-arm-gnueabihf@npm:0.154.0"
+"@oxc-parser/binding-linux-arm-gnueabihf@npm:0.156.0":
+  version: 0.156.0
+  resolution: "@oxc-parser/binding-linux-arm-gnueabihf@npm:0.156.0"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-linux-arm-musleabihf@npm:0.154.0":
-  version: 0.154.0
-  resolution: "@oxc-parser/binding-linux-arm-musleabihf@npm:0.154.0"
+"@oxc-parser/binding-linux-arm-musleabihf@npm:0.156.0":
+  version: 0.156.0
+  resolution: "@oxc-parser/binding-linux-arm-musleabihf@npm:0.156.0"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-linux-arm64-gnu@npm:0.154.0":
-  version: 0.154.0
-  resolution: "@oxc-parser/binding-linux-arm64-gnu@npm:0.154.0"
+"@oxc-parser/binding-linux-arm64-gnu@npm:0.156.0":
+  version: 0.156.0
+  resolution: "@oxc-parser/binding-linux-arm64-gnu@npm:0.156.0"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-linux-arm64-musl@npm:0.154.0":
-  version: 0.154.0
-  resolution: "@oxc-parser/binding-linux-arm64-musl@npm:0.154.0"
+"@oxc-parser/binding-linux-arm64-musl@npm:0.156.0":
+  version: 0.156.0
+  resolution: "@oxc-parser/binding-linux-arm64-musl@npm:0.156.0"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-linux-ppc64-gnu@npm:0.154.0":
-  version: 0.154.0
-  resolution: "@oxc-parser/binding-linux-ppc64-gnu@npm:0.154.0"
+"@oxc-parser/binding-linux-ppc64-gnu@npm:0.156.0":
+  version: 0.156.0
+  resolution: "@oxc-parser/binding-linux-ppc64-gnu@npm:0.156.0"
   conditions: os=linux & cpu=ppc64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-linux-riscv64-gnu@npm:0.154.0":
-  version: 0.154.0
-  resolution: "@oxc-parser/binding-linux-riscv64-gnu@npm:0.154.0"
+"@oxc-parser/binding-linux-riscv64-gnu@npm:0.156.0":
+  version: 0.156.0
+  resolution: "@oxc-parser/binding-linux-riscv64-gnu@npm:0.156.0"
   conditions: os=linux & cpu=riscv64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-linux-riscv64-musl@npm:0.154.0":
-  version: 0.154.0
-  resolution: "@oxc-parser/binding-linux-riscv64-musl@npm:0.154.0"
+"@oxc-parser/binding-linux-riscv64-musl@npm:0.156.0":
+  version: 0.156.0
+  resolution: "@oxc-parser/binding-linux-riscv64-musl@npm:0.156.0"
   conditions: os=linux & cpu=riscv64 & libc=musl
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-linux-s390x-gnu@npm:0.154.0":
-  version: 0.154.0
-  resolution: "@oxc-parser/binding-linux-s390x-gnu@npm:0.154.0"
+"@oxc-parser/binding-linux-s390x-gnu@npm:0.156.0":
+  version: 0.156.0
+  resolution: "@oxc-parser/binding-linux-s390x-gnu@npm:0.156.0"
   conditions: os=linux & cpu=s390x & libc=glibc
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-linux-x64-gnu@npm:0.154.0":
-  version: 0.154.0
-  resolution: "@oxc-parser/binding-linux-x64-gnu@npm:0.154.0"
+"@oxc-parser/binding-linux-x64-gnu@npm:0.156.0":
+  version: 0.156.0
+  resolution: "@oxc-parser/binding-linux-x64-gnu@npm:0.156.0"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-linux-x64-musl@npm:0.154.0":
-  version: 0.154.0
-  resolution: "@oxc-parser/binding-linux-x64-musl@npm:0.154.0"
+"@oxc-parser/binding-linux-x64-musl@npm:0.156.0":
+  version: 0.156.0
+  resolution: "@oxc-parser/binding-linux-x64-musl@npm:0.156.0"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-openharmony-arm64@npm:0.154.0":
-  version: 0.154.0
-  resolution: "@oxc-parser/binding-openharmony-arm64@npm:0.154.0"
+"@oxc-parser/binding-openharmony-arm64@npm:0.156.0":
+  version: 0.156.0
+  resolution: "@oxc-parser/binding-openharmony-arm64@npm:0.156.0"
   conditions: os=openharmony & cpu=arm64
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-win32-arm64-msvc@npm:0.154.0":
-  version: 0.154.0
-  resolution: "@oxc-parser/binding-win32-arm64-msvc@npm:0.154.0"
+"@oxc-parser/binding-win32-arm64-msvc@npm:0.156.0":
+  version: 0.156.0
+  resolution: "@oxc-parser/binding-win32-arm64-msvc@npm:0.156.0"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-win32-ia32-msvc@npm:0.154.0":
-  version: 0.154.0
-  resolution: "@oxc-parser/binding-win32-ia32-msvc@npm:0.154.0"
+"@oxc-parser/binding-win32-ia32-msvc@npm:0.156.0":
+  version: 0.156.0
+  resolution: "@oxc-parser/binding-win32-ia32-msvc@npm:0.156.0"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-win32-x64-msvc@npm:0.154.0":
-  version: 0.154.0
-  resolution: "@oxc-parser/binding-win32-x64-msvc@npm:0.154.0"
+"@oxc-parser/binding-win32-x64-msvc@npm:0.156.0":
+  version: 0.156.0
+  resolution: "@oxc-parser/binding-win32-x64-msvc@npm:0.156.0"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"@oxc-project/types@npm:^0.154.0":
-  version: 0.154.0
-  resolution: "@oxc-project/types@npm:0.154.0"
-  checksum: 10c0/fa91599d087ea4d37c5a3b40dd8e2cb431a7d37730116069f2577dee0b104dc5abb06c96b931c517c8b86f618df1e0c7a37d24086f3cfe39d81eb6db59e70add
+"@oxc-project/types@npm:^0.156.0":
+  version: 0.156.0
+  resolution: "@oxc-project/types@npm:0.156.0"
+  checksum: 10c0/7f101d33e967179c10d38708c71c8c602ad862843a788603d6b8c2accebf2fce420ca95a26d74d90bc35db36daa0a8285c3af1589c38ae20e46e47153549313f
   languageName: node
   linkType: hard
 
@@ -8220,14 +8220,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playwright/test@npm:^1.32.3":
-  version: 1.64.1
-  resolution: "@playwright/test@npm:1.64.1"
+"@playwright/test@npm:^1.65.0":
+  version: 1.65.0
+  resolution: "@playwright/test@npm:1.65.0"
   dependencies:
-    playwright: "npm:1.64.1"
+    playwright: "npm:1.65.0"
   bin:
     playwright: cli.js
-  checksum: 10c0/0a1a853d76d6c532cafaf0366a5448584b766737ebd39bbd23dc0580f3d3b6ef4c833082af47a792e7fc2501f444debdfaad37a87a76cc5b195f3803fc80ea3c
+  checksum: 10c0/137a641e1be8035686a165e69d86d242ee7ed5cbe71e5230f9195cb6e65be37a66ba697f16919b508d04c4d682fd4e167d1a755b64ceb545afac780de72b594b
   languageName: node
   linkType: hard
 
@@ -12454,11 +12454,11 @@ __metadata:
     "@backstage/cli-defaults": "npm:^0.1.7"
     "@changesets/cli": "npm:2.31.1"
     "@jest/environment-jsdom-abstract": "npm:^30.5.0"
-    "@playwright/test": "npm:^1.32.3"
+    "@playwright/test": "npm:^1.65.0"
     "@types/jest": "npm:^30.0.0"
     jest: "npm:^30.5.0"
     jsdom: "npm:^27.1.0"
-    knip: "npm:6.42.1"
+    knip: "npm:6.44.2"
     node-gyp: "npm:^12.4.0"
     prettier: "npm:^2.3.2"
     typescript: "npm:~5.9.3"
@@ -20233,26 +20233,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"knip@npm:6.42.1":
-  version: 6.42.1
-  resolution: "knip@npm:6.42.1"
+"knip@npm:6.44.2":
+  version: 6.44.2
+  resolution: "knip@npm:6.44.2"
   dependencies:
     formatly: "npm:^0.11.4"
     get-tsconfig: "npm:4.14.3"
     jiti: "npm:^2.7.0"
-    oxc-parser: "npm:^0.154.0"
+    oxc-parser: "npm:^0.156.0"
     oxc-resolver: "npm:11.24.2"
     picomatch: "npm:^4.0.7"
     smol-toml: "npm:^1.9.0"
     strip-json-comments: "npm:5.0.3"
     tinyglobby: "npm:^0.2.17"
-    unbash: "npm:^6.0.0"
+    unbash: "npm:^6.0.1"
     yaml: "npm:^2.9.1"
     zod: "npm:^4.6.5"
   bin:
     knip: bin/knip.js
     knip-bun: bin/knip-bun.js
-  checksum: 10c0/ae5d3480f71353fb7ee580ffaff3f06a0e15b29565eca5d2ae9d6d23fe9b0d4c0b6f524a93a5ab5392ac3e26ddc5930665629d4c33b74ca02cab7ec508b71584
+  checksum: 10c0/ea45e0df7d5bbd05c6b233a5896f865b318ae2f50e5766441a60274f4067a0f5d56bd1d41e49955504a79f86896acc66aa5bb979cc69ed3fc975636ab893a892
   languageName: node
   linkType: hard
 
@@ -20773,9 +20773,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"markdownlint@npm:0.42.0":
-  version: 0.42.0
-  resolution: "markdownlint@npm:0.42.0"
+"markdownlint@npm:0.42.1":
+  version: 0.42.1
+  resolution: "markdownlint@npm:0.42.1"
   dependencies:
     micromark: "npm:4.0.3"
     micromark-core-commonmark: "npm:2.0.4"
@@ -20785,9 +20785,9 @@ __metadata:
     micromark-extension-gfm-table: "npm:2.1.2"
     micromark-extension-math: "npm:3.1.0"
     micromark-util-types: "npm:2.0.3"
-    re2js: "npm:2.8.6"
+    re2js: "npm:2.9.1"
     string-width: "npm:8.3.0"
-  checksum: 10c0/9c76296accde30fa8768542e397b2ef2f5455e4161e503b47ad379477d10c7da8470b561a87b1c7640197b1f488a4a5554a116e0b309a16f24db25af6d6b0ed1
+  checksum: 10c0/f052eebb2b7e27282a66ba8fcc4619fbcb3ca2fcf80f5df763c3d999dfc786e19cb95d6bb78f1ad6258bb88e1c3c3bbbfa33a61d7ac72e9ae888e17e7964440d
   languageName: node
   linkType: hard
 
@@ -23249,30 +23249,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"oxc-parser@npm:^0.154.0":
-  version: 0.154.0
-  resolution: "oxc-parser@npm:0.154.0"
+"oxc-parser@npm:^0.156.0":
+  version: 0.156.0
+  resolution: "oxc-parser@npm:0.156.0"
   dependencies:
-    "@oxc-parser/binding-android-arm-eabi": "npm:0.154.0"
-    "@oxc-parser/binding-android-arm64": "npm:0.154.0"
-    "@oxc-parser/binding-darwin-arm64": "npm:0.154.0"
-    "@oxc-parser/binding-darwin-x64": "npm:0.154.0"
-    "@oxc-parser/binding-freebsd-x64": "npm:0.154.0"
-    "@oxc-parser/binding-linux-arm-gnueabihf": "npm:0.154.0"
-    "@oxc-parser/binding-linux-arm-musleabihf": "npm:0.154.0"
-    "@oxc-parser/binding-linux-arm64-gnu": "npm:0.154.0"
-    "@oxc-parser/binding-linux-arm64-musl": "npm:0.154.0"
-    "@oxc-parser/binding-linux-ppc64-gnu": "npm:0.154.0"
-    "@oxc-parser/binding-linux-riscv64-gnu": "npm:0.154.0"
-    "@oxc-parser/binding-linux-riscv64-musl": "npm:0.154.0"
-    "@oxc-parser/binding-linux-s390x-gnu": "npm:0.154.0"
-    "@oxc-parser/binding-linux-x64-gnu": "npm:0.154.0"
-    "@oxc-parser/binding-linux-x64-musl": "npm:0.154.0"
-    "@oxc-parser/binding-openharmony-arm64": "npm:0.154.0"
-    "@oxc-parser/binding-win32-arm64-msvc": "npm:0.154.0"
-    "@oxc-parser/binding-win32-ia32-msvc": "npm:0.154.0"
-    "@oxc-parser/binding-win32-x64-msvc": "npm:0.154.0"
-    "@oxc-project/types": "npm:^0.154.0"
+    "@oxc-parser/binding-android-arm-eabi": "npm:0.156.0"
+    "@oxc-parser/binding-android-arm64": "npm:0.156.0"
+    "@oxc-parser/binding-darwin-arm64": "npm:0.156.0"
+    "@oxc-parser/binding-darwin-x64": "npm:0.156.0"
+    "@oxc-parser/binding-freebsd-x64": "npm:0.156.0"
+    "@oxc-parser/binding-linux-arm-gnueabihf": "npm:0.156.0"
+    "@oxc-parser/binding-linux-arm-musleabihf": "npm:0.156.0"
+    "@oxc-parser/binding-linux-arm64-gnu": "npm:0.156.0"
+    "@oxc-parser/binding-linux-arm64-musl": "npm:0.156.0"
+    "@oxc-parser/binding-linux-ppc64-gnu": "npm:0.156.0"
+    "@oxc-parser/binding-linux-riscv64-gnu": "npm:0.156.0"
+    "@oxc-parser/binding-linux-riscv64-musl": "npm:0.156.0"
+    "@oxc-parser/binding-linux-s390x-gnu": "npm:0.156.0"
+    "@oxc-parser/binding-linux-x64-gnu": "npm:0.156.0"
+    "@oxc-parser/binding-linux-x64-musl": "npm:0.156.0"
+    "@oxc-parser/binding-openharmony-arm64": "npm:0.156.0"
+    "@oxc-parser/binding-win32-arm64-msvc": "npm:0.156.0"
+    "@oxc-parser/binding-win32-ia32-msvc": "npm:0.156.0"
+    "@oxc-parser/binding-win32-x64-msvc": "npm:0.156.0"
+    "@oxc-project/types": "npm:^0.156.0"
   dependenciesMeta:
     "@oxc-parser/binding-android-arm-eabi":
       optional: true
@@ -23312,7 +23312,7 @@ __metadata:
       optional: true
     "@oxc-parser/binding-win32-x64-msvc":
       optional: true
-  checksum: 10c0/6512e0901618735f5baea0619a021e23ee8e51fedb9c54c1d6807bf2655f9642c3355672b5c0492e3fd7f0dd0de43e98e6e28f4a9d3f2ffbb5e7aaef7ca25564
+  checksum: 10c0/994cae7bd0bbbaa1f4273f2de3c07a2a282673c39e4a909c3b4503ac5692b36ca56c9154f189694dd5599bf8f3ce1f7221e40b6b089d1da42408eafb6dd2b44f
   languageName: node
   linkType: hard
 
@@ -24140,23 +24140,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright-core@npm:1.64.1":
-  version: 1.64.1
-  resolution: "playwright-core@npm:1.64.1"
+"playwright-core@npm:1.65.0":
+  version: 1.65.0
+  resolution: "playwright-core@npm:1.65.0"
   bin:
     playwright-core: cli.js
-  checksum: 10c0/91c4f5ed1cff4b0e18b6ac62f66770f5f1b6c204d4aebd6a321c07466dca18a70822ac692597c6059705a703f9768097ac551df179fb49294d639509148e04f3
+  checksum: 10c0/ed905c6fc2457a725c3fdb3ad4500f43c7a1bb2c6e4e8c708e1e314930c7dce446a5756ad073425bf3c6e3ca975e5a35fb0221118e2d51ef7b4b6c6d13d0644c
   languageName: node
   linkType: hard
 
-"playwright@npm:1.64.1":
-  version: 1.64.1
-  resolution: "playwright@npm:1.64.1"
+"playwright@npm:1.65.0":
+  version: 1.65.0
+  resolution: "playwright@npm:1.65.0"
   dependencies:
-    playwright-core: "npm:1.64.1"
+    playwright-core: "npm:1.65.0"
   bin:
     playwright: cli.js
-  checksum: 10c0/edf52d0a79feca37bf383e841a467aa68750684128218eac560063991c9e4b615a94901f580cd8a088bb05fd53008ab4a0e5e8d976067698b60ae5d1de2459f3
+  checksum: 10c0/a7d71f3ca5bcad0531b5f3c39ae1a9be0da8e74be6fee8510d99b9f5fc07fd5b3d889aa4ca487c70ca29aba8625f74e3c2c7473b4c8a784dc14fefff80474ac3
   languageName: node
   linkType: hard
 
@@ -25313,10 +25313,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"re2js@npm:2.8.6":
-  version: 2.8.6
-  resolution: "re2js@npm:2.8.6"
-  checksum: 10c0/70a7ae4778429ddd8dfef6af3ee65e152999e31a894f19f3eb4820f5267d2ac0c5797b60f988139a5d72a9f06bb5c0b7fd05c4aaa6272970b006772aa956fb51
+"re2js@npm:2.9.1":
+  version: 2.9.1
+  resolution: "re2js@npm:2.9.1"
+  checksum: 10c0/799c179ab563b8c16422b80cbcccdfdc0e940c50999930c1aa91bd5fe54e08a00a50abcf5510ab1bb3d881c90235c6fb177ed9d710cf3e5b4e843f026407ba9b
   languageName: node
   linkType: hard
 
@@ -28670,10 +28670,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unbash@npm:^6.0.0":
-  version: 6.0.1
-  resolution: "unbash@npm:6.0.1"
-  checksum: 10c0/d87ba3d042474ae8bb474845144ae21695758f2d8d99ec64e99aa11498c93b37ddc9b2958f17732f3f4d245fe295f3798fb3b45c6f04f52e394035c7d3d3c2a8
+"unbash@npm:^6.0.1":
+  version: 6.0.4
+  resolution: "unbash@npm:6.0.4"
+  checksum: 10c0/833344431b42fe4461a278358b813fe63563f40f4cd0511f8bbe85d57575b3769add1ab051e4948c8514f520b9ce21a9f0f6db1b163f20e16f8fba1081fa971d
   languageName: node
   linkType: hard
 
