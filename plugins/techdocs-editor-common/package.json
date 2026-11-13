@@ -49,7 +49,7 @@
     "@backstage/catalog-model": "^1.10.2",
     "@backstage/plugin-catalog-common": "^1.2.1",
     "@backstage/plugin-permission-common": "^0.9.12",
-    "markdownlint": "0.42.0",
+    "markdownlint": "0.42.1",
     "yaml": "2.9.1"
   },
   "devDependencies": {
