@@ -41,8 +41,8 @@
     "plugins/*"
   ],
   "devDependencies": {
-    "@backstage/cli": "^0.36.7",
-    "@backstage/cli-defaults": "^0.1.7",
+    "@backstage/cli": "^0.36.8",
+    "@backstage/cli-defaults": "^0.1.8",
     "@changesets/cli": "2.31.1",
     "@jest/environment-jsdom-abstract": "^30.5.0",
     "@playwright/test": "^1.32.3",
